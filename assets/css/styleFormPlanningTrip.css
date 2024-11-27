@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins Regular', Arial;
+    color: #fff;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.planning_trip_section {
+    position: relative;
+    height: 100vh;
+    background-image: url(../img/form_bg.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.planning_trip_section:before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to bottom, #000a,transparent);
+    z-index: 1;
+}
+
+.planning_trip_section__header {
+    z-index: 3;
+    padding: 15px 40px;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.planning_trip_section__header img {
+    height: 50px;
+}
+
+#button_profile_user {
+    padding: 8px 12px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-left: 10px;
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#menu_profile_user {
+    position: absolute;
+    top: 85px;
+    right: 40px;
+    background-color: #0004;
+    border-radius: 8px;
+    width: 160px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#menu_profile_user ul {
+    list-style: none;
+}
+
+#menu_profile_user ul li:hover {
+    background-color: #fff5;
+    border-radius: 8px;
+}
+
+#menu_profile_user a {
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.container_form {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.intro_banner h1 {
+    font-size: 2.5rem;
+}
+
+.intro_banner p {
+    font-size: 1.25rem;
+    width: 70%;
+    text-align: justify;
+}
+
+.form_planning_trip {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    border-radius: 10px;
+    min-width: 450px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0 0 15px 1px #0002;
+    backdrop-filter: blur(20px);
+}
+
+.form_planning_trip p {
+    text-align: justify;
+    margin: 20px 0;
+}
+
+.form_planning_trip > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: start;
+}
+
+.row {
+    display: flex;
+    flex-direction: row !important;
+    gap: 20px;
+}
+
+.half_width {
+    width: 50%;
+}
+
+.custom-dropdown {
+    position: relative;
+    background-color: transparent;
+    color: #333;
+    cursor: pointer;
+}
+
+.dropdown-selected {
+    font-size: 14px;
+    background-color: transparent;
+    color: #ccc;
+    border-bottom: 2px solid #fff;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    z-index: 100;
+    height: 135px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.dropdown-option {
+    padding: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    color: #000;
+}
+
+.dropdown-option:hover {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.dropdown-options.active {
+    display: block;
+    margin-top: 5px;
+}
+
+.form_planning_trip input {
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 2px solid #fff;
+}
+
+.form_planning_trip input:focus, .form_planning_trip select {
+    outline: 0;
+}
+
+.form_planning_trip input::placeholder {
+    color: #ccc;
+}
+
+.input_readonly {
+    cursor: default;
+}
+
+.form_planning_trip input[readonly] {
+    user-select: none; /* Evita la selección */
+    pointer-events: none; /* Deshabilita el clic */
+}
+
+.form_planning_trip input[type="number"]::-webkit-outer-spin-button,
+.form_planning_trip input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form_planning_trip button {
+    padding: 12px 0px;
+    color: #000;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.form_planning_trip button:hover {
+    background-color: #bcbcbc;
+}
+
+@media (width < 850px){
+    .container_form {
+        justify-content: center;
+    }
+
+    .intro_banner {
+        display: none;
+    }
+}
+
+@media (width < 475px) {
+    .form_planning_trip {
+        min-width: initial;
+    }
+}

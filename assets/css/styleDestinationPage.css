@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins Regular', Arial;
+}
+
+button {
+    cursor: pointer;
+}
+
+section {
+    position: relative;
+    padding: 50px 60px;
+    min-width: 375px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.information_section__description, .information_section__activities {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.information_section__activities > div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.width-card {
+    width: 33.3333333%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow:  6px 6px 12px #bfbfbf,
+    -6px -6px 12px #eee;
+}
+
+.card > p:first-of-type {
+    height: 140px;
+}
+
+.card p {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+
+.information_section__reservation {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 35px;
+    margin-bottom: 20px;
+}
+
+.information_section__reservation button {
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 0.98rem;
+    border-radius: 0.5em;
+    background: #eee;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: all 0.5s ease;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.information_section__reservation button:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+@keyframes zoom {
+    from {
+        -moz-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1)
+    }
+
+    to {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2)
+    }
+}
+
+@media (width < 988px) {
+    .width-card {
+        width: 100%;
+    }
+}

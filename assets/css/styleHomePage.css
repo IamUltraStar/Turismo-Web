@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins Regular', Arial;
+}
+
+button {
+    cursor: pointer;
+}
+
+section {
+    position: relative;
+    padding: 50px 60px;
+    min-width: 375px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.destinations_section__container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    gap: 32px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow:  6px 6px 12px #bfbfbf,
+    -6px -6px 12px #eee;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: bottom;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card_body {
+    padding: 20px 30px;
+}
+
+.card_body h1 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.card_body p {
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card_body button {
+    margin-top: 30px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: lightblue;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 3px 3px 8px #c5c5c5, -6px -6px 12px #ffffff;
+    transition: all .5s ease;
+}
+
+.card_body button:active {
+    color: #666;
+    box-shadow: inset 3px 3px 8px #bbb, inset -3px -3px 8px #ffffff;
+}
+
+.card_body__description {
+    text-overflow: ellipsis;
+}
+
+.about_us_section {
+    display: flex;
+    scroll-margin-top: 80px;
+}
+
+.about_us_section__header {
+    color: #fff;
+    padding: 200px 65px;
+    background-color: #1d5c50;
+    width: 45%;
+    border-radius: 20px;
+}
+
+.about_us_section__header div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about_us_section__header h1 {
+    text-align: center;
+}
+
+.about_us_section__body {
+    color: #000;
+    padding: 80px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.contact_us_section {
+    display: flex;
+    background-image: url(../img/form_bg_1.jpg);
+    background-position: center;
+    background-size: cover;
+    scroll-margin-top: 80px;
+}
+
+.contact_us_section__information, .contact_us_section__form {
+    padding: 40px;
+}
+
+.contact_us_section__information {
+    background-color: #1d5c50;
+    color: #fff;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.contact_us_section__information div {
+    display: flex;
+    gap: 20px;
+}
+
+.contact_us_section__information div i {
+    font-size: 30px;
+}
+
+.contact_us_section__information div p {
+    word-break: break-all;
+}
+
+.contact_us_section__form {
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    width: 100%;
+    background-color: #0004;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    backdrop-filter: blur(20px);
+}
+
+.contact_us_section__form h2 {
+    color: #fff;
+} 
+
+.contact_us_box {
+    position: relative;
+}
+
+.contact_us_input__label {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: top 0.3s, font-size 0.3s;
+}
+
+.contact_us_input {
+    width: 100%;
+    color: #fff;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 2px solid #fff;
+    padding: 2px 0;
+    position: relative;
+    z-index: 1;
+    resize: none;
+}
+
+.contact_us_section__form textarea {
+    border: 0;
+    border-left: 2px solid #fff;
+    padding-left: 5px;
+}
+
+.contact_us_section__form textarea::placeholder {
+    color: #fff;
+}
+
+.contact_us_input:focus, .contact_us_section__form textarea:focus {
+    outline: 0;
+}
+
+.button_box {
+    display: flex;
+    justify-content: end;
+}
+
+.button_box button {
+    color: #000;
+    font-weight: bold;
+    width: 30%;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.half_width {
+    width: 50%;
+}
+
+.contact_us_input:focus + .contact_us_input__label,
+.contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus) + .contact_us_input__label {
+  top: -18px;
+  font-size: 0.8rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+@media (width < 1050px) {
+    .about_us_section {
+        flex-direction: column;
+    }
+
+    .about_us_section__header {
+        width: 100%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 80px 65px;
+    }
+
+    .about_us_section__body {
+        padding: 50px;
+    }
+}
+
+@media (width < 800px) {
+    .hero_section__header {
+        display: none;
+    }
+
+    .contact_us_section {
+        flex-direction: column;
+    }
+    
+    .contact_us_section__information {
+        width: 100%;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 20px;
+    }
+
+    .contact_us_section__form {
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 0;
+    }
+}
+
+@media (495px <= width <= 555px) {
+    .contact_us_input__label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (width < 495px) {
+    .contact_us_section__information div {
+        display: block;
+    }
+
+    .contact_us_input__label {
+        font-size: 0.66rem;
+    }
+
+    .contact_us_input:focus + .contact_us_input__label,
+    .contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus) + .contact_us_input__label {
+        top: -18px;
+        font-size: 0.66rem;
+    }
+}
+
+@keyframes zoom {
+    from {
+        -moz-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1)
+    }
+
+    to {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2)
+    }
+}

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.payment_page_section {
+    position: relative;
+    height: 100vh;
+    background-image: url(../img/payment_page_bg.jpg);
+    background-size: cover;
+    background-position: bottom;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment_page_section::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to bottom, #000a,transparent);
+    z-index: 1;
+}
+
+.payment_page_section__header {
+    z-index: 3;
+    padding: 15px 40px;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payment_page_section__header img {
+    height: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter: blur(15px);
+    background-color: #fffa;
+    margin: 0 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+}
+
+.container header {
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #777;
+}
+
+.container header i {
+    font-size: 24px;
+}
+
+i[class*=" fi-rr-"]:before {
+    display: flex;    
+}
+
+.row {
+    display: flex;
+    height: 100%;
+}
+
+.container form {
+    padding: 40px;
+    width: 40%;
+}
+
+.summary-container {
+    width: 100% !important;
+    border-right: 1px solid #777;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.summary-container h3 + hr {
+    margin: 10px 0;
+}
+
+.separator-row {
+    padding: 10px 0;
+}
+
+.column .title {
+    font-size: 20px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.column .input-box {
+    margin: 10px 0;
+}
+
+.input-box span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.input-box input:focus {
+    outline: 0;
+}
+
+.column .flex {
+    display: flex;
+    gap: 15px;
+}
+
+.flex .input-box {
+    margin-top: 5px;
+}
+
+.input-box img {
+    height: 34px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+}
+
+form .btn {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #fff;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: .5s ease;
+}
+
+form .btn:hover {
+    background-color: #212121;
+}

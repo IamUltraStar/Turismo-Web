@@ -11,7 +11,7 @@
 <body>
     <section class="payment_page_section">
         <header class="payment_page_section__header">
-            <img src="../../assets/img/enterprise_logo.png" alt="">
+            <img src="../../assets/img/enterprise_logo.png" alt="logo de la empresa">
         </header>
         <div class="container">
             <header>

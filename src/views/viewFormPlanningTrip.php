@@ -11,7 +11,7 @@
     <section class="planning_trip_section">
         <header class="planning_trip_section__header" id="id="dynamic_header"">
             <a href="view.php" class="img_box__a">
-                <img src="../../assets/img/enterprise_logo.png" alt="">
+                <img src="../../assets/img/enterprise_logo.png" alt="logo de la empresa">
             </a>
             <nav class="planning_trip_section__header__nav">
                 <button id="button_profile_user" type="button"></button>

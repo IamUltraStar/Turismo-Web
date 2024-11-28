@@ -11,7 +11,7 @@
     <section class="login_section">
         <header class="login_section__header">
             <a href="view.php" class="img_box__a">
-                <img src="../../assets/img/enterprise_logo.png" alt="">
+                <img src="../../assets/img/enterprise_logo.png" alt="logo de la empresa">
             </a>
         </header>
         <div class="container_form">

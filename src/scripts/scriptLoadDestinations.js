@@ -17,6 +17,8 @@ fetch(`data.php?action=${action}`, {
 
         const img = document.createElement("img");
         img.src = destination.Image;
+        img.loading = "lazy";
+        img.alt = destination.Name;
 
         const cardBody = document.createElement("div");
         cardBody.className = "card_body";

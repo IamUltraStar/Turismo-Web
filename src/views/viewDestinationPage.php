@@ -16,7 +16,7 @@
         <div style="position: relative; padding: 40px 0;">
             <header class="hero_section__header" id="dynamic_header">
                 <a href="view.php" class="img_box__a">
-                    <img src="../../assets/img/enterprise_logo.png" alt="">
+                    <img src="../../assets/img/enterprise_logo.png" alt="logo de la empresa">
                 </a>
                 <nav class="hero_section__header__nav">
                     <a href="view.php?view=view-destinations">Destinos</a>

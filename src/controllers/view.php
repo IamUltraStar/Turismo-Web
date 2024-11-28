@@ -100,6 +100,15 @@ if(isset($_GET["view"])) {
             break;
 
         case "view-admin":
+            if (!isset($_SESSION['UserID'])) {
+                $titleModal = '¡Ups! Acceso Necesario';
+                $msgModal = 'Por favor, inicie sesión o regístrese para continuar a esta sección y disfrutar de nuestros servicios.';
+                
+                include('../views/viewHomePage.php');
+                include('../views/viewModal.php');
+                exit();
+            }
+
             include('../views/viewAdmin.php');
             break;
 

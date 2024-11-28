@@ -14,7 +14,7 @@
                 <img src="../../assets/img/enterprise_logo.png" alt="">
             </a>
             <nav class="planning_trip_section__header__nav">
-                <button class="<?php echo $opcUser; ?>" id="button_profile_user" type="button"><?php echo $initials; ?></button>
+                <button id="button_profile_user" type="button"></button>
             </nav>
             <div class="hidden" id="menu_profile_user">
                 <ul>
@@ -37,11 +37,7 @@
                     <label for="">Seleccione un viaje</label>
                     <div class="dropdown-selected" id="select_list_programmed_trips">Selecciona una opción</div>
                     <input type="hidden" id="selected_trip_id" name="ProgrammedTripID" value="">
-                    <div class="dropdown-options" id="list_programmed_trips">
-                        <?php foreach ($arrayProgrammedTrip as $programmedTrip): ?>
-                            <div class="dropdown-option" data-id="<?php echo $programmedTrip['ProgrammedTripID']; ?>"><?php echo $programmedTrip['Name']; ?></div>
-                        <?php endforeach; ?>
-                    </div>
+                    <div class="dropdown-options" id="list_programmed_trips"></div>
                 </div>
                 <div class="full_width">
                     <label for="">Número de telefono</label>
@@ -65,60 +61,6 @@
             </form>
         </div>
     </section>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const button_profile_user = document.getElementById('button_profile_user');
-            const menu_profile_user = document.getElementById('menu_profile_user');
-            const select_list_programmed_trips = document.getElementById('select_list_programmed_trips');
-            const list_programmed_trips = document.getElementById('list_programmed_trips');
-            const hiddenInput = document.getElementById('selected_trip_id');
-            const tripDateField = document.getElementById('trip_date');
-            const tripPriceField = document.getElementById('trip_price');
-
-            // Mostrar/ocultar el menú al hacer clic en el ícono
-            button_profile_user.addEventListener('click', () => {
-                menu_profile_user.classList.toggle('hidden');
-            });
-
-            select_list_programmed_trips.addEventListener('click', () => {
-                list_programmed_trips.classList.toggle('active');
-            });
-
-            // Ocultar el menú al hacer clic fuera de él
-            document.addEventListener('click', (event) => {
-                if (!menu_profile_user.contains(event.target) && event.target !== button_profile_user) {
-                    menu_profile_user.classList.add('hidden');
-                }
-
-                if (!list_programmed_trips.contains(event.target) && event.target !== select_list_programmed_trips) {
-                    list_programmed_trips.classList.remove('active');
-                }
-            });
-
-            document.querySelectorAll('.dropdown-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const tripId = this.getAttribute('data-id');
-                    select_list_programmed_trips.innerText = this.innerText;
-                    hiddenInput.value = tripId;
-                    list_programmed_trips.classList.remove('active');
-                    
-                    let ajax = new XMLHttpRequest();
-                    ajax.open("POST", "data.php?action=get-date-programmed-trip", true);
-                    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    ajax.send(`tripId=${tripId}`);
-
-                    ajax.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            const response = JSON.parse(this.responseText);
-
-                            tripDateField.value = response['StartDate'] || "No disponible";
-                            tripPriceField.value = response['Price'] || "No disponible";
-                        }
-                    }
-                });
-            });
-        });
-
-    </script>
+    <script src="../scripts/scriptFormPlanningTrip.js"></script>
 </body>
 </html>

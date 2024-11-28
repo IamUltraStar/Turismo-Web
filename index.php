@@ -1,2 +1,2 @@
 <?php
-header("Location: src/controllers/view.php?view=verify-exist-session");
+header("Location: src/controllers/view.php");

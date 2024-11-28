@@ -1,8 +1,8 @@
-<dialog open>
+<dialog id="dialog-modal" open>
     <div class='body-dialog'>
         <div class='container-dialog'>
-            <h1><?php echo $titleModal; ?></h1>
-            <p><?php echo $msgModal; ?></p>
+            <h1 id="title-modal"><?php echo $titleModal; ?></h1>
+            <p id="msg-modal"><?php echo $msgModal; ?></p>
             <form method='dialog'>
                 <button onclick="closeDialogModal()">Ok</button>
             </form>

@@ -1,5 +1,7 @@
 <?php
 include("../models/User.php");
+include("../models/Reservation.php");
+include("../models/Payment.php");
 
 session_start();
 
@@ -11,7 +13,7 @@ if(isset($_GET["action"])) {
             
             $objUser = new User();
             if(!($objUser->checkErrorsLogin($username, $password))){
-                header('Location: view.php?view=view-login&msg=1');
+                echo "1";
                 exit();
             }
             
@@ -23,15 +25,15 @@ if(isset($_GET["action"])) {
                     $data = $objUser->getDataUserByID($UserID);
                     
                     if($data["Rol"] == "administrador") {
-                        header('Location: view.php?view=view-admin');
+                        echo "-1";
                     }else{
-                        header('Location: view.php?view=verify-exist-session');
+                        echo "0";
                     }
                 }else{
-                    echo "ERROR";
+                    echo "100";
                 }
             }else{
-                header('Location: view.php?view=view-login&msg=2');
+                echo "2";
             }
             break;
 
@@ -48,25 +50,36 @@ if(isset($_GET["action"])) {
             if ($type_error == '0') {
                 $UserID = $objUser->executeRegister($name, $email, $username, $password);
                 $_SESSION['UserID'] = $UserID;
-                header('Location: view.php?view=verify-exist-session');
+                header('Location: view.php');
             }else{
-                header("Location: view.php?view=view-register&msg=$type_error");
+                echo $type_error;
             }
 
             break;
 
         case "execute-pay":
+            $ProgrammedTripID = $_POST['ProgrammedTripID'];
+            $PhoneNumber = $_POST['PhoneNumber'];
+            $NumberPeople = $_POST['NumberPeople'];
+            $TotalAmount = $_POST['TotalAmount'];
+
+            $objReservation = new Reservation();
+            $objReservation->createReservation($ProgrammedTripID, $_SESSION['UserID'], $PhoneNumber, $NumberPeople);
+            $ReservationID = $objReservation->lastReservationInserted();
+
+            $objPayment = new Payment();
+            $objPayment->createPayment($ReservationID, 1, $TotalAmount);
+
             header("Location: view.php?view=payment-made");
             break;
 
         case "logout":
             session_destroy();
-            header("Location: view.php?view=verify-exist-session");
+            header("Location: view.php");
             break;
         
         default:
-            header("Location: view.php?view=verify-exist-session");
+            header("Location: view.php");
             break;
     }
-    
 }

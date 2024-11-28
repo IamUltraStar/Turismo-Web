@@ -33,7 +33,7 @@ class Reservation {
 
     // Obtener una reserva específica
     public function getReservation($idReserv) {
-        $sql = "SELECT Name, Description FROM Reservations WHERE ReservationID = ?";
+        $sql = "SELECT * FROM Reservations WHERE ReservationID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
@@ -49,12 +49,12 @@ class Reservation {
     }
 
     // Actualizar reserva
-    public function updateReservation($idReserv,$programmedTripID, $idUser, $numberPhone, $idDest, $dateReserv, $tripDate, $numberpeople, $state) {
-        $sql = "UPDATE Reservations SET  ProgrammedTripID = ?, UserID = ?, PhoneNumber = ?, DestinationID = ?, ReservationDate = ?, TripDate = ?, NumberPeople = ?, State = ? WHERE id = ?";
+    public function updateReservation($idReserv,$programmedTripID, $idUser, $numberPhone, $dateReserv, $numberpeople, $state) {
+        $sql = "UPDATE Reservations SET  ProgrammedTripID = ?, UserID = ?, PhoneNumber = ?, ReservationDate = ?, NumberPeople = ?, State = ? WHERE ReservationID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
-            $stmt->bind_param("iissssisi", $programmedTripID, $idUser, $numberPhone, $idDest, $dateReserv, $tripDate, $numberpeople, $state, $idReserv); // Definir los tipos de datos
+            $stmt->bind_param("iissisi", $programmedTripID, $idUser, $numberPhone, $dateReserv, $numberpeople, $state, $idReserv); // Definir los tipos de datos
             $result = $stmt->execute();
 
             return $result ? 1 : 0; 
@@ -77,17 +77,20 @@ class Reservation {
     }
 
     // Crear una nueva reserva
-    public function createReservation($programmedTripID, $idUser, $numberPhone, $idDest, $dateReserv, $tripDate, $numberpeople, $state) {
-        $sql = "INSERT INTO Reservations ( ProgrammedTripID, UserID, PhoneNumber, DestinationID, ReservationDate, TripDate, NumberPeople, State) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public function createReservation($programmedTripID, $idUser, $numberPhone, $numberpeople) {
+        $sql = "INSERT INTO Reservations ( ProgrammedTripID, UserID, PhoneNumber, NumberPeople) VALUES (?, ?, ?, ?)";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
-            $stmt->bind_param("iissssii",$programmedTripID,  $idUser, $numberPhone, $idDest, $dateReserv, $tripDate, $numberpeople, $state); // Definir los tipos de datos
+            $stmt->bind_param("iisi",$programmedTripID,  $idUser, $numberPhone, $numberpeople); // Definir los tipos de datos
             $result = $stmt->execute();
 
             return $result ? 1 : 0;
         }
         return 0; 
     }
-}
 
+    public function lastReservationInserted(){
+        return $this->connection->insert_id;
+    }
+}

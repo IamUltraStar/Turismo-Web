@@ -25,42 +25,46 @@
                     <table>
                         <tr>
                             <td>Nombre del viaje</td>
-                            <td><?php echo $arrayProgrammedTrip['Name']; ?></td>
+                            <td id="trip-name"></td>
                         </tr>
                         <tr>
                             <td>Cantidad de personas</td>
-                            <td><?php echo $NumberPeople; ?></td>
+                            <td id="num-people"></td>
                         </tr>
                         <tr>
                             <td>Fecha del viaje</td>
-                            <td><?php echo $arrayProgrammedTrip['StartDate']; ?></td>
+                            <td id="trip-date"></td>
                         </tr>
                         <tr>
                             <td>Precio del viaje x persona</td>
-                            <td>S/<?php echo $arrayProgrammedTrip['Price']; ?></td>
+                            <td id="trip-price"></td>
                         </tr>
                         <tr>
                             <td class="separator-row" colspan="2"><hr></td>
                         </tr>
                         <tr>
                             <td>Subtotal</td>
-                            <td>S/<?php echo floatval($NumberPeople) * floatval($arrayProgrammedTrip['Price']); ?></td>
+                            <td id="subtotal"></td>
                         </tr>
                         <tr>
                             <td>IGV</td>
-                            <td>S/<?php echo 0.18 * (floatval($NumberPeople) * floatval($arrayProgrammedTrip['Price'])); ?></td>
+                            <td id="igv"></td>
                         </tr>
                         <tr>
                             <td class="separator-row" colspan="2"><hr></td>
                         </tr>
                         <tr>
                             <td>Total</td>
-                            <td>S/<?php echo (floatval($NumberPeople) * floatval($arrayProgrammedTrip['Price'])) + (0.18 * (floatval($NumberPeople) * floatval($arrayProgrammedTrip['Price']))); ?></td>
+                            <td id="total"></td>
                         </tr>
                     </table>
                 </div>
                 <form class="column" action="authentication.php?action=execute-pay" method="POST">
                     <h3 class="title">Pago</h3>
+                    <input type="hidden" name="ProgrammedTripID" value="<?php echo $ProgrammedTripID; ?>">
+                    <input type="hidden" name="PhoneNumber" value="<?php echo $PhoneNumber; ?>">
+                    <input type="hidden" name="NumberPeople" value="<?php echo $NumberPeople; ?>">
+                    <input id="total_input_hidden" type="hidden" name="TotalAmount" value="">
                     <div class="input-box">
                         <span>Tarjetas aceptadas :</span>
                         <img src="../../assets/img/imgcards.png" alt="">
@@ -73,7 +77,6 @@
                         <span>Mes de caducidad :</span>
                         <input type="text" placeholder="Agosto">
                     </div>
-                
                     <div class="flex">
                         <div class="input-box">
                             <span>Año de cad. :</span>
@@ -89,5 +92,40 @@
             </div>
         </div>
     </section>
+    <script>
+        const ProgrammedTripID = <?php echo $ProgrammedTripID; ?>;
+
+        fetch("data.php?action=get-programmed-trip", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `ProgrammedTripID=${ProgrammedTripID}`
+        })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById("trip-name").innerText = data.Name || "--";
+            document.getElementById("num-people").innerText = <?php echo $NumberPeople; ?>;
+            document.getElementById("trip-date").innerText = data.StartDate || "--";
+            document.getElementById("trip-price").innerText = `S/${data.Price || "--.--"}`;
+
+            let numPeople = parseFloat(<?php echo $NumberPeople; ?>);
+            let pricePerPerson = parseFloat(data.Price || 0);
+            let subtotal = numPeople * pricePerPerson;
+            let igv = subtotal * 0.18;
+            let total = subtotal + igv;
+
+            document.getElementById("subtotal").innerText = `S/${subtotal.toFixed(2)}`;
+            document.getElementById("igv").innerText = `S/${igv.toFixed(2)}`;
+            document.getElementById("total").innerText = `S/${total.toFixed(2)}`;
+            document.getElementById("total_input_hidden").value = total;
+        })
+        .catch(error => {
+            console.error("Error al cargar los destinos:", error);
+        });
+    </script>
 </body>
 </html>

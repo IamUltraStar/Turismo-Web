@@ -77,12 +77,12 @@ class Payment {
     }
 
     // crear  nuevo pago
-    public function createPayment($idReservation, $idPaymentMethod, $totalAmount, $paymentDate) {
-        $sql = "INSERT INTO Payments (ReservationID, PaymentMethodID, TotalAmount, PaymentDate) VALUES (?, ?, ?, ?)";
+    public function createPayment($idReservation, $idPaymentMethod, $totalAmount) {
+        $sql = "INSERT INTO Payments (ReservationID, PaymentMethodID, TotalAmount) VALUES (?, ?, ?)";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
-            $stmt->bind_param("iids", $idReservation, $idPaymentMethod, $totalAmount, $paymentDate); // "iids" para los tipos de parámetros
+            $stmt->bind_param("iid", $idReservation, $idPaymentMethod, $totalAmount); // "iids" para los tipos de parámetros
             $result = $stmt->execute();
 
             return $result ? 1 : 0; 

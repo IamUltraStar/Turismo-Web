@@ -1,5 +1,5 @@
 <?php
-include("../db/ConexionSQL.php");
+require_once("../db/ConexionSQL.php");
 
 class User{
     function executeLogin($username, $password){

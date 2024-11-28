@@ -22,9 +22,9 @@
                     <a href="view.php?view=view-destinations">Destinos</a>
                     <a href="view.php#about_us_section">Acerca de Nosotros</a>
                     <a href="view.php#contact_us_section">Contacto</a>
-                    <a class="<?php echo $opcLogin; ?>" href="view.php?view=view-login">Iniciar Sesión</a>
-                    <a class="<?php echo $opcLogin; ?>" id="button_sing_up" href="view.php?view=view-register">Registrarme</a>
-                    <button class="<?php echo $opcUser; ?>" id="button_profile_user" type="button"><?php echo $initials; ?></button>
+                    <a class="" id="button_login" href="view.php?view=view-login">Iniciar Sesión</a>
+                    <a class="" id="button_sing_up" href="view.php?view=view-register">Registrarme</a>
+                    <button class="" id="button_profile_user" type="button"></button>
                 </nav>
                 <div class="hidden" id="menu_profile_user">
                     <ul>
@@ -46,20 +46,10 @@
         </div>
         <div class="information_section__activities">
             <h1>Actividades</h1>
-            <div>
-                <?php foreach ($arrayActivity as $activity): ?>
-                    <div class="width-card">
-                        <div class="card">
-                            <h3><?php echo $activity['Name']; ?></h3>
-                            <p><?php echo $activity['Description']; ?></p>
-                            <p>Precio: S/<?php echo $activity['Price']; ?></p>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <div id="information_section__activities_container"></div>
         </div>
         <div class="information_section__reservation">
-            <p><b>Precio Total: S/<?php echo $price_dataProgrammedTrip; ?></b></p>
+            <p id="price_dataProgrammedTrip"></p>
             <button>Reservar</button>
         </div>
     </section>
@@ -79,5 +69,6 @@
         </ul>
     </footer>
     <script src="../scripts/scriptHeroSection.js"></script>
+    <script src="../scripts/scriptDestinationPage.js"></script>
 </body>
 </html>

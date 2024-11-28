@@ -23,9 +23,9 @@
                     <a href="view.php?view=view-destinations">Destinos</a>
                     <a href="view.php#about_us_section">Acerca de Nosotros</a>
                     <a href="view.php#contact_us_section">Contacto</a>
-                    <a class="<?php echo $opcLogin; ?>" href="view.php?view=view-login">Iniciar Sesión</a>
-                    <a class="<?php echo $opcLogin; ?>" id="button_sing_up" href="view.php?view=view-register">Registrarme</a>
-                    <button class="<?php echo $opcUser; ?>" id="button_profile_user" type="button"><?php echo $initials; ?></button>
+                    <a class="" id="button_login" href="view.php?view=view-login">Iniciar Sesión</a>
+                    <a class="" id="button_sing_up" href="view.php?view=view-register">Registrarme</a>
+                    <button class="" id="button_profile_user" type="button"></button>
                 </nav>
                 <div class="hidden" id="menu_profile_user">
                     <ul>
@@ -49,22 +49,7 @@
             <h1>Explora los Destinos Más Populares</h1>
             <p>Aquí están los destinos favoritos de nuestros viajeros, ¡anímate a conocerlos!</p>
         </header>
-        <div class="destinations_section__container">
-            <?php foreach ($arrayDestination as $destination): ?>
-                <div class="card">
-                    <img src="<?php echo htmlspecialchars($destination['Image']); ?>" alt="">
-                    <div class="card_body">
-                        <h1><?php echo $destination['Name']; ?></h1>
-                        <p class="card_body__description"><?php echo $destination['Description']; ?></p>
-                        <form action="view.php" method="GET">
-                            <input type="hidden" name="view" value="view-destinations">
-                            <input type="hidden" name="destination" value="<?php echo $destination['DestinationID']; ?>">
-                            <button type="submit">Ver más</button>
-                        </form>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
+        <div class="destinations_section__container" id="destinations_section__container"></div>
     </section>
     <section class="about_us_section" id="about_us_section">
         <header class="about_us_section__header">
@@ -141,6 +126,7 @@
     </footer>
     <script>
         const url = new URL(window.location);
+        const action = "list-popular-destination";
 
         if (url.searchParams.has('view')) {
             url.searchParams.delete('view');
@@ -148,5 +134,6 @@
         }
     </script>
     <script src="../scripts/scriptHeroSection.js"></script>
+    <script src="../scripts/scriptLoadDestinations.js"></script>
 </body>
 </html>

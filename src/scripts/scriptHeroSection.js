@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const button_login = document.getElementById('button_login');
+    const button_sing_up = document.getElementById('button_sing_up');
     const button_profile_user = document.getElementById('button_profile_user');
     const menu_profile_user = document.getElementById('menu_profile_user');
     const header = document.getElementById('dynamic_header');
@@ -25,4 +27,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    fetch("data.php?action=verify-exist-session", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        return response.text();
+    })
+    .then(data => {
+        if (data) {
+            button_login.classList.add('hidden');
+            button_sing_up.classList.add('hidden');
+            button_profile_user.innerText = data;
+        } else {
+            button_profile_user.classList.add('hidden');
+        }
+    })
+    .catch(error => {console.error("Error al verificar la sesión:", error);});
 });

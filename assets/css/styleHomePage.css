@@ -122,7 +122,7 @@ section {
 
 .contact_us_section {
     display: flex;
-    background-image: url(../img/form_bg_1.jpg);
+    background-image: url(../img/form_bg_1.webp);
     background-position: center;
     background-size: cover;
     scroll-margin-top: 80px;

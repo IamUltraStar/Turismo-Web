@@ -15,7 +15,7 @@
 .planning_trip_section {
     position: relative;
     height: 100vh;
-    background-image: url(../img/form_bg.jpg);
+    background-image: url(../img/form_bg.webp);
     background-size: cover;
     background-position: center;
     display: flex;

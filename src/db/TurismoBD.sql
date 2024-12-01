@@ -83,7 +83,7 @@ CREATE TABLE Destination_Activities(
     Foreign Key (ActivityID) REFERENCES Activities(ActivityID)
 );
 
-INSERT INTO Users (Username, Password, FullName, Email, Rol) VALUES ("admin_t", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Estrella", "jeanestrella558@gmail.com", "administrador");
+INSERT INTO Users (Username, Password, FullName, Email, Rol) VALUES ("admin_t", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Estrella", "jeanestrella558@gmail.com", "administrador"); --password: 1234
 
 INSERT INTO CategoriesDestinations (Name, Description) VALUES 
 ('Cultural', 'Destinos enfocados en la cultura e historia de Perú, incluyendo sitios arqueológicos y tradiciones.'),
@@ -212,13 +212,3 @@ INSERT INTO Destination_Activities (DestinationID, ActivityID) VALUES
 (14, 13),
 (15, 9),
 (15, 10);
-
-
-/* INSERT INTO Reservations (ProgrammedTripID, UserID, PhoneNumber, NumberPeople, State) VALUES 
-(1, 1, '987654321', 2, 'confirmada'), 
-(3, 2, '987123456', 4, 'pendiente'), 
-(5, 3, '975312468', 1, 'cancelada');
-
-INSERT INTO Payments (ReservationID, PaymentMethodID, TotalAmount) VALUES 
-(1, 1, 700.00), -- Pago con tarjeta
-(2, 2, 600.00); -- Pago con transferencia */

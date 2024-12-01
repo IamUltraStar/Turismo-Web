@@ -46,11 +46,9 @@ if(isset($_GET["action"])) {
             if ($type_error == '0') {
                 $UserID = $objUser->executeRegister($name, $email, $username, $password);
                 $_SESSION['UserID'] = $UserID;
-                header('Location: view.php');
-            }else{
-                echo $type_error;
             }
 
+            echo $type_error;
             break;
 
         case "execute-pay":

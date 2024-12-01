@@ -461,8 +461,9 @@ switch ($action) {
 
             if ($programmedTripID) {
                 $result = $programmedTripModel->updateProgrammedTrip($programmedTripID, $name, $description, $startDate, $endDate, $maxCapacity, $price, $destinationID);
-                $message = $result ? "programacion de viaje cactualizar con éxito" : "Error al actualizar programacion de viaje";
+                $message = $result ? "programacion de viaje actualizado con éxito" : "Error al actualizar programacion de viaje";
             }
+            
             header("Location: ../controllers/view.php?view=view-admin");
         }
         break;

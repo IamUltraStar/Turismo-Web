@@ -131,14 +131,8 @@
                         ?>
                     </div>
                     <div class="col-md-2" >
-                        <select name="category_id" class="form-select" id="category_select" required>
-                        <option value="" disabled <?= !isset($editDestination['CategoryName']) ? 'selected' : ''; ?>>Seleccione Categoría</option>
-                        <?php
-                            foreach ($arrayCategoryDestination as $Category) {
-                                $selected = (isset($editDestination) && $editDestination['CategoryID'] == $Category['CategoryID']) ? 'selected' : '';
-                                echo "<option value='{$Category['CategoryID']}' {$selected}> {$Category['Name']} </option>";
-                            }
-                            ?>
+                        <select name="category_id" class="form-select" id="category_select" data-selected-category="<?php echo isset($editDestination) ? $editDestination['CategoryID'] : ''; ?>" required>
+                            <option value="" disabled <?= !isset($editDestination['CategoryName']) ? 'selected' : ''; ?>>Seleccione Categoría</option>
                         </select>
                     </div>
                     <div class="col-md-1">
@@ -211,7 +205,7 @@
                             required>
                     </div>
                     <div class="col-md-3" >
-                        <select name="destination_id" id="destination_select__programmedtrip" class="form-select" required>
+                        <select name="destination_id" id="destination_select" class="form-select" data-selected-destination="<?php echo isset($editprogrammedTrip) ? $editprogrammedTrip['DestinationID'] : ''; ?>" required>
                             <option value="" disabled <?= !isset($editprogrammedTrip['DestinationName']) ? 'selected' : ''; ?>>Seleccione destino</option>
                         </select>
                     </div>
@@ -344,41 +338,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../scripts/scriptAdmin.js"></script>
-    <script>
-        if (<?php echo isset($editCategory) ? 'true' : 'false'; ?>) {
-            let url = new URL(window.location);
-            url.hash = "categories";
-
-            window.history.pushState({}, document.title, url);
-        }
-
-        if (<?php echo isset($editDestination) ? 'true' : 'false'; ?>) {
-            let url = new URL(window.location);
-            url.hash = "destinations";
-
-            window.history.pushState({}, document.title, url);
-        }
-
-        if (<?php echo isset($editpaymentMethod) ? 'true' : 'false'; ?>) {
-            let url = new URL(window.location);
-            url.hash = "payments";
-
-            window.history.pushState({}, document.title, url);
-        }
-
-        if (<?php echo isset($editprogrammedTrip) ? 'true' : 'false'; ?>) {
-            let url = new URL(window.location);
-            url.hash = "trips";
-
-            window.history.pushState({}, document.title, url);
-        }
-        
-        if (<?php echo isset($editActivity) ? 'true' : 'false'; ?>) {
-            let url = new URL(window.location);
-            url.hash = "activities";
-
-            window.history.pushState({}, document.title, url);
-        }
-    </script>
 </body>
 </html>

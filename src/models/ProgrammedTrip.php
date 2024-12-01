@@ -47,7 +47,7 @@ class ProgrammedTrip{
 
     // Obtener una reserva específica
     public function getProgrammedTrip($idProgram) {
-        $sql = "SELECT pt.ProgrammedTripID, pt.Name as ProgrammedTripName, pt.Description, pt.StartDate, pt.EndDate, pt.MaxCapacity, pt.Price, d.Name as DestinationName FROM ProgrammedTrips as pt JOIN Destinations as d ON pt.DestinationID = d.DestinationID WHERE pt.ProgrammedTripID = ?";
+        $sql = "SELECT pt.ProgrammedTripID, pt.Name as ProgrammedTripName, pt.Description, pt.StartDate, pt.EndDate, pt.MaxCapacity, pt.Price, d.DestinationID, d.Name as DestinationName FROM ProgrammedTrips as pt JOIN Destinations as d ON pt.DestinationID = d.DestinationID WHERE pt.ProgrammedTripID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
@@ -79,17 +79,17 @@ class ProgrammedTrip{
     }
 
     // Actualizar reserva
-    public function updateProgrammedTrip($idProgram, $name, $description, $stateDate, $endDate, $maxCapacity, $price, $destinationID) {
+    public function updateProgrammedTrip($idProgram, $name, $description, $startDate, $endDate, $maxCapacity, $price, $destinationID) {
         $sql = "UPDATE ProgrammedTrips SET Name = ?, Description = ?, StartDate = ?, EndDate = ?, MaxCapacity = ?, Price = ?, DestinationID = ? WHERE ProgrammedTripID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
-            $stmt->bind_param("issssiis", $idProgram, $name, $description, $stateDate, $endDate, $maxCapacity, $price, $destinationID); 
+            $stmt->bind_param("ssssidii", $name, $description, $startDate, $endDate, $maxCapacity, $price, $destinationID, $idProgram);
             $result = $stmt->execute();
 
             return $result ? 1 : 0; 
         }
-        return 0; 
+        return 0;
     }
 
     // Eliminar una reserva

@@ -10,6 +10,31 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     
+    const categorySelect = document.getElementById("category_select");
+    const selectedCategory = categorySelect.getAttribute("data-selected-category");
+
+    if (selectedCategory) {
+        // Espera a que las opciones sean añadidas por el proceso AJAX
+        setTimeout(() => {
+            let optionToSelect = categorySelect.querySelector(`option[value="${selectedCategory}"]`);
+            if (optionToSelect) {
+                optionToSelect.selected = true;
+            }
+        }, 300);
+    }
+
+    const destination_select = document.getElementById("destination_select");
+    const selectedDestination = destination_select.getAttribute("data-selected-destination");
+
+    if (selectedDestination) {
+        setTimeout(() => {
+            let optionToSelect = destination_select.querySelector(`option[value="${selectedDestination}"]`);
+            if (optionToSelect) {
+                optionToSelect.selected = true;
+            }
+        }, 300);
+    }
+
     fetch("admin.php?action=list-category")
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -17,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(data => {
             const category_table = document.getElementById("category_table");
-            const activity_select = document.getElementById("activity_select");
+            const category_select = document.getElementById("category_select");
             
             data.forEach(category => {
                 const tr = document.createElement("tr");
@@ -58,8 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(data => {
             const destination_table = document.getElementById("destination_table");
-            const destination_select__programmedtrip = document.getElementById("destination_select__programmedtrip");
-            
+            const destination_select = document.getElementById("destination_select");
 
             data.forEach(destination => {
                 const tr = document.createElement("tr");
@@ -88,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             `;
 
                 destination_table.appendChild(tr);
-                destination_select__programmedtrip.appendChild(option);
+                destination_select.appendChild(option);
             });
         })
         .catch(error => {

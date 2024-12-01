@@ -107,7 +107,7 @@
             return response.json();
         })
         .then(data => {
-            document.getElementById("trip-name").innerText = data.Name || "--";
+            document.getElementById("trip-name").innerText = data.ProgrammedTripName || "--";
             document.getElementById("num-people").innerText = <?php echo $NumberPeople; ?>;
             document.getElementById("trip-date").innerText = data.StartDate || "--";
             document.getElementById("trip-price").innerText = `S/${data.Price || "--.--"}`;

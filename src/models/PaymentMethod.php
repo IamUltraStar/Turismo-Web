@@ -32,7 +32,7 @@ class PaymentMethod {
 
     // obtener un método de pago 
     public function getPaymentMethod($idPymtMtd) {
-        $sql = "SELECT Name, Description FROM PaymentMethods WHERE PaymentMethodID = ?";
+        $sql = "SELECT * FROM PaymentMethods WHERE PaymentMethodID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {

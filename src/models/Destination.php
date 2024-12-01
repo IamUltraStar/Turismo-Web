@@ -44,7 +44,7 @@ class Destination {
 
     // obtener destino
     public function getDestination($idDest) {
-        $sql = "SELECT d.Name as DestinationName, d.Description, d.Location, d.Price, d.Image, cd.Name as CategoryName FROM Destinations as d JOIN CategoriesDestinations AS cd ON d.CategoryID = cd.CategoryID WHERE d.DestinationID = ?";
+        $sql = "SELECT d.DestinationID, d.Name as DestinationName, d.Description, d.Location, d.Price, d.Image, cd.Name as CategoryName FROM Destinations as d JOIN CategoriesDestinations AS cd ON d.CategoryID = cd.CategoryID WHERE d.DestinationID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {

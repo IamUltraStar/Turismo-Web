@@ -8,7 +8,7 @@ class User{
             $objConexionSQL = new ConexionSQL();
             $connection = $objConexionSQL->ExecuteConnection();
 
-            $query = "SELECT Username, Password FROM Users WHERE Username = ?";
+            $query = "SELECT UserID, Username, Password FROM Users WHERE Username = ?";
             $stmt = $connection->prepare($query);
             $stmt->bind_param('s', $username);
             $stmt->execute();
@@ -16,7 +16,7 @@ class User{
 
             if($row = $result->fetch_assoc()){
                 if (password_verify($password, $row['Password'])) {
-                    $valueLogin = true;
+                    $valueLogin = $row['UserID'];
                 }
             }
             $stmt->close();
@@ -24,6 +24,7 @@ class User{
         }catch(Exception $e){
             echo $e->getMessage();
         }
+        
         return $valueLogin;
     }
     
@@ -47,31 +48,6 @@ class User{
         }
 
         return $UserID;
-    }
-
-    function getIDByUsername($username){
-        $valueID = false;
-        try{
-            $objConexionSQL = new ConexionSQL();
-            $connection = $objConexionSQL->ExecuteConnection();
-
-            $query = "SELECT UserID FROM Users WHERE Username = ?";
-            $stmt = $connection->prepare($query);
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if($row = $result->fetch_assoc()){
-                $valueID = $row['UserID'];
-            }
-
-            $stmt->close();
-            $connection->close();
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }
-        
-        return $valueID;
     }
 
     function getDataUserByID($UserID){

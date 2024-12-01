@@ -28,7 +28,7 @@ class Activity {
 
     // Método para obtener una actividad
     public function getActivity($idActiv) {
-        $sql = "SELECT Name, Description, Price FROM Activities WHERE id = ?";
+        $sql = "SELECT * FROM Activities WHERE ActivityID = ?";
         $stmt = $this->connection->prepare($sql);
         $stmt->bind_param("i", $idActiv); 
         $stmt->execute();
@@ -43,7 +43,7 @@ class Activity {
 
     // Método para actualizar
     public function updateActivity($idActiv, $name, $description, $price) {
-        $sql = "UPDATE Activities SET Name = ?, Description = ?, Price = ? WHERE id = ?";
+        $sql = "UPDATE Activities SET Name = ?, Description = ?, Price = ? WHERE ActivityID = ?";
         $stmt = $this->connection->prepare($sql);
         $stmt->bind_param("ssdi", $name, $description, $price, $idActiv); 
         $result = $stmt->execute();
@@ -53,7 +53,7 @@ class Activity {
 
     // eliminar una actividad
     public function deleteActivity($idActiv) {
-        $sql = "DELETE FROM Activities WHERE id = ?";
+        $sql = "DELETE FROM Activities WHERE ActivityID = ?";
         $stmt = $this->connection->prepare($sql);
         $stmt->bind_param("i", $idActiv); 
         $result = $stmt->execute();

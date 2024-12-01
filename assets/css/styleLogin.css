@@ -124,8 +124,8 @@
 
 .login_input:focus + .login_input__label,
 .login_input:not(:placeholder-shown).login_input:not(:focus) + .login_input__label {
-  top: -18px;
-  font-size: 0.8rem;
+    top: -18px;
+    font-size: 0.8rem;
 }
 
 .form_login button {

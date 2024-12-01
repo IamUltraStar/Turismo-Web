@@ -30,7 +30,7 @@ class CategoryDestination {
 
     // Método para obtener una categoría
     public function getCategoryDestination($idCatD) {
-        $sql = "SELECT Name, Description FROM CategoriesDestinations WHERE CategoryID = ?";
+        $sql = "SELECT * FROM CategoriesDestinations WHERE CategoryID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {

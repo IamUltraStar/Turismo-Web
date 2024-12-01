@@ -239,8 +239,8 @@ section {
 
 .contact_us_input:focus + .contact_us_input__label,
 .contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus) + .contact_us_input__label {
-  top: -18px;
-  font-size: 0.8rem;
+    top: -18px;
+    font-size: 0.8rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {

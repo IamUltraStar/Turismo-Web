@@ -47,7 +47,7 @@ class ProgrammedTrip{
 
     // Obtener una reserva específica
     public function getProgrammedTrip($idProgram) {
-        $sql = "SELECT Name, Description, StartDate, EndDate, MaxCapacity, Price, DestinationID FROM ProgrammedTrips WHERE ProgrammedTripID = ?";
+        $sql = "SELECT pt.ProgrammedTripID, pt.Name as ProgrammedTripName, pt.Description, pt.StartDate, pt.EndDate, pt.MaxCapacity, pt.Price, d.Name as DestinationName FROM ProgrammedTrips as pt JOIN Destinations as d ON pt.DestinationID = d.DestinationID WHERE pt.ProgrammedTripID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
@@ -107,12 +107,12 @@ class ProgrammedTrip{
     }
 
     // Crear una nueva reserva
-    public function createProgrammedTrip($idProgram, $name, $description, $stateDate, $endDate, $maxCapacity, $price, $destinationID) {
+    public function createProgrammedTrip($name, $description, $startDate, $endDate, $maxCapacity, $price, $destinationID) {
         $sql = "INSERT INTO ProgrammedTrips ( Name, Description, StartDate, EndDate, MaxCapacity, Price, DestinationID) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {
-            $stmt->bind_param("ssssiis", $name, $description, $stateDate, $endDate, $maxCapacity, $price, $destinationID); // Definir los tipos de datos
+            $stmt->bind_param("ssssiis", $name, $description, $startDate, $endDate, $maxCapacity, $price, $destinationID); // Definir los tipos de datos
             $result = $stmt->execute();
 
             return $result ? 1 : 0;

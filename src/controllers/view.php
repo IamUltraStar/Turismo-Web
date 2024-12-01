@@ -1,4 +1,5 @@
 <?php
+include("../models/User.php");
 include("../models/Destination.php");
 
 session_start();
@@ -103,6 +104,18 @@ if(isset($_GET["view"])) {
             if (!isset($_SESSION['UserID'])) {
                 $titleModal = '¡Ups! Acceso Necesario';
                 $msgModal = 'Por favor, inicie sesión o regístrese para continuar a esta sección y disfrutar de nuestros servicios.';
+                
+                include('../views/viewHomePage.php');
+                include('../views/viewModal.php');
+                exit();
+            }
+
+            $objUser = new User();
+            $data = $objUser->getDataUserByID($_SESSION['UserID']);
+                
+            if($data["Rol"] != "administrador") {
+                $titleModal = 'Acceso Restringido';
+                $msgModal = 'Lo sentimos, esta sección está disponible solo para administradores. Si crees que esto es un error, por favor contacta con el soporte.';
                 
                 include('../views/viewHomePage.php');
                 include('../views/viewModal.php');

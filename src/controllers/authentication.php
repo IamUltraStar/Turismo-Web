@@ -17,20 +17,16 @@ if(isset($_GET["action"])) {
                 exit();
             }
             
-            $result = $objUser->executeLogin($username, $password);
-            if($result === true) {
-                $UserID = $objUser->getIDByUsername($username);
-                if($UserID != false) {
-                    $_SESSION['UserID'] = $UserID;
-                    $data = $objUser->getDataUserByID($UserID);
-                    
-                    if($data["Rol"] == "administrador") {
-                        echo "-1";
-                    }else{
-                        echo "0";
-                    }
+            $UserID = $objUser->executeLogin($username, $password);
+            
+            if($UserID !== false) {
+                $_SESSION['UserID'] = $UserID;
+                $data = $objUser->getDataUserByID($UserID);
+                
+                if($data["Rol"] == "administrador") {
+                    echo "-1";
                 }else{
-                    echo "100";
+                    echo "0";
                 }
             }else{
                 echo "2";

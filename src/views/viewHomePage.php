@@ -124,16 +124,28 @@
             </li>
         </ul>
     </footer>
+    <script>const action = "list-popular-destination";</script>
+    <script src="../scripts/scriptHeroSection.js"></script>
+    <script src="../scripts/scriptLoadDestinations.js"></script>
     <script>
         const url = new URL(window.location);
-        const action = "list-popular-destination";
 
         if (url.searchParams.has('view')) {
             url.searchParams.delete('view');
             window.history.replaceState({}, document.title, url);
         }
+
+        if (window.location.hash) {
+            setTimeout(() => {
+                let hash = window.location.hash;
+                if (hash) {
+                    const targetElement = document.querySelector(hash);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: "smooth" });
+                    }
+                }
+            }, 300);
+        }
     </script>
-    <script src="../scripts/scriptHeroSection.js"></script>
-    <script src="../scripts/scriptLoadDestinations.js"></script>
 </body>
 </html>

@@ -93,7 +93,7 @@
         <!-- Gestión de Destinos -->
         <section id="destinations">
             <h2>Destinos</h2>
-            <h3><?php echo $title_action_destination ?? 'Crear destinos:'; ?></h3>
+            <h3><?php echo $title_action_destination ?? 'Crear destino:'; ?></h3>
             <!-- Formulario para agregar un destino -->
             <form action="admin.php?action=<?php echo isset($editDestination) ? 'update-destination' : 'create-destination'; ?>"
                 method="POST" class="mb-3" enctype="multipart/form-data">
@@ -165,7 +165,7 @@
         <!-- Gestión de Viajes Programados -->
         <section id="trips">
             <h2>Viajes Programados</h2>
-            <h3><?php echo $title_action_programmedTrip ?? 'Crear viajes programados:'; ?></h3>
+            <h3><?php echo $title_action_programmedTrip ?? 'Crear viaje programado:'; ?></h3>
             <!-- Formulario para agregar un viaje programado -->
             <form action="admin.php?action=<?php echo isset($editprogrammedTrip) ? 'update-programmed-trip' : 'create-programmed-trip'; ?>" method="POST" class="mb-3">
                 <div class="row">
@@ -242,7 +242,7 @@
         <!-- Gestión de Métodos de Pago -->
         <section id="payments">
             <h2>Métodos de Pago</h2>
-            <h3><?php echo $title_action_paymentMethod ?? 'Crear methodos de pago:'; ?></h3>
+            <h3><?php echo $title_action_paymentMethod ?? 'Crear método de pago:'; ?></h3>
             <!-- Formulario para agregar un método de pago -->
             <form action="admin.php?action=<?php echo isset($editpaymentMethod) ? 'update-payment-method' : 'create-payment-method'; ?>" method="POST" class="mb-3">
                 <?php if (isset($editpaymentMethod)): ?>
@@ -285,7 +285,6 @@
         <hr>
 
         <!-- Gestión de Actividades -->
-
         <section id="activities">
             <h2>Actividades</h2>
             <h3><?php echo $title_action_activity ?? 'Crear actividad:'; ?></h3>

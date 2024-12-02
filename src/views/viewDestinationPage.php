@@ -50,7 +50,9 @@
         </div>
         <div class="information_section__reservation">
             <p id="price_dataProgrammedTrip"></p>
-            <button>Reservar</button>
+            <form id="form-planning-trip">
+                <button>Reservar</button>
+            </form>
         </div>
     </section>
     <footer>

@@ -59,6 +59,22 @@ fetch("data.php?action=get-programmed-trip-by-destination", {
 })
 .then(price => {
     const price_dataProgrammedTrip = document.getElementById("price_dataProgrammedTrip");
+    const form = document.getElementById("form-planning-trip");
+    
     price_dataProgrammedTrip.innerText = `Precio Total: S/${price}`;
+
+    if (price != "--.--") {
+        form.action = "view.php";
+        form.method = "GET";
+
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "view";
+        input.value = "form-planning-trip";
+
+        form.append(input);
+    }else{
+        form.querySelector("button").type = "button";
+    }
 })
 .catch(error => {console.error("Error:", error);});

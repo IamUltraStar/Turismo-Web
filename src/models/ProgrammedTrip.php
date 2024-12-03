@@ -47,7 +47,7 @@ class ProgrammedTrip{
 
     // Obtener una reserva específica
     public function getProgrammedTrip($idProgram) {
-        $sql = "SELECT pt.ProgrammedTripID, pt.Name as ProgrammedTripName, pt.Description, pt.StartDate, pt.EndDate, pt.MaxCapacity, pt.Price, d.DestinationID, d.Name as DestinationName FROM ProgrammedTrips as pt JOIN Destinations as d ON pt.DestinationID = d.DestinationID WHERE pt.ProgrammedTripID = ?";
+        $sql = "SELECT pt.ProgrammedTripID, pt.Name as ProgrammedTripName, pt.Description, DATE_FORMAT(pt.StartDate, '%d-%m-%Y') AS StartDate, DATE_FORMAT(pt.EndDate, '%d-%m-%Y') AS EndDate, pt.MaxCapacity, pt.Price, d.DestinationID, d.Name as DestinationName FROM ProgrammedTrips as pt JOIN Destinations as d ON pt.DestinationID = d.DestinationID WHERE pt.ProgrammedTripID = ?";
         $stmt = $this->connection->prepare($sql);
 
         if ($stmt) {

@@ -88,7 +88,7 @@ fetch("data.php?action=list-programmed-trip-available", {
                     return response.json();
                 })
                 .then(data => {
-                    tripDateField.value = data.StartDate || "No disponible";
+                    tripDateField.value = `${data.StartDate} al ${data.EndDate}` || "No disponible";
                     tripPriceField.value = data.Price || "No disponible";
                 })
                 .catch(error => {console.error("Error al cargar los detalles del viaje:", error);});

@@ -165,11 +165,11 @@ Recorrer Chan Chan es como adentrarse en una ciudad fantasma que aún conserva s
 Además de las actividades de aventura, Huacachina ofrece un ambiente relajado para quienes buscan descansar y disfrutar del paisaje. Su laguna central, envuelta en leyendas locales, añade un toque místico a este lugar. La combinación de adrenalina, naturaleza y tranquilidad hace de Huacachina un destino único en el Perú.', 'Ica', 90.00, '../../assets/img/destination_huacachina.webp', 3);
 
 INSERT INTO ProgrammedTrips (Name, Description, StartDate, EndDate, MaxCapacity, Price, DestinationID) VALUES 
-('Tour Machu Picchu Básico', 'Incluye visita guiada y transporte en tren desde Cusco.', '2024-12-01', '2024-12-02', 30, 350.00, 1),
-('Sobrevuelo Líneas de Nazca', 'Experiencia inolvidable para admirar los misteriosos geoglifos.', '2024-11-30', '2024-11-30', 15, 200.00, 2),
+('Tour Machu Picchu Básico', 'Incluye visita guiada y transporte en tren desde Cusco.', '2024-12-04', '2024-12-07', 30, 350.00, 1),
+('Sobrevuelo Líneas de Nazca', 'Experiencia inolvidable para admirar los misteriosos geoglifos.', '2024-11-30', '2024-12-01', 15, 200.00, 2),
 ('Aventura en Paracas', 'Incluye paseo en bote a las Islas Ballestas y visita a la Reserva Nacional de Paracas.', '2024-12-10', '2024-12-11', 25, 150.00, 3),
 ('Trekking Laguna Humantay', 'Caminata guiada con vistas espectaculares de la laguna y el nevado.', '2024-12-05', '2024-12-05', 20, 100.00, 4),
-('Exploración del Cañón del Colca', 'Incluye trekking, observación de cóndores y visitas a pueblos tradicionales.', '2024-12-15', '2024-12-16', 20, 220.00, 5);
+('Exploración del Cañón del Colca', 'Incluye trekking, observación de cóndores y visitas a pueblos tradicionales.', '2024-12-15', '2024-12-17', 20, 220.00, 5);
 
 INSERT INTO PaymentMethods (Name, Description) VALUES 
 ('Tarjeta de Crédito', 'Pago mediante tarjetas Visa, Mastercard o American Express.'),

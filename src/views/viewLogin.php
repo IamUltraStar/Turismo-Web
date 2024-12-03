@@ -95,8 +95,7 @@
                         const result = await response.text();
 
                         if (result !== "0" && result !== "-1") {
-                            console.log(result);
-                            //handleModal(result);
+                            handleModal(result);
                         } else {
                             window.location.href = result === "0" ? "view.php" : "view.php?view=view-admin";
                         }

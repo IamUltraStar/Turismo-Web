@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +17,14 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="view.php?view=view-admin">Admin Turismo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="./admin">Admin Turismo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -68,7 +71,8 @@
                             value='<?php echo isset($editCategory) ? $editCategory['Description'] : ''; ?>' required>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" name="<?php echo isset($editCategory) ? 'update_category' : 'add_category' ?>"
+                        <button type="submit"
+                            name="<?php echo isset($editCategory) ? 'update_category' : 'add_category' ?>"
                             class="btn btn-primary">
                             <?php echo isset($editCategory) ? 'Actualizar' : 'Agregar'; ?>
                         </button>
@@ -95,11 +99,13 @@
             <h2>Destinos</h2>
             <h3><?php echo $title_action_destination ?? 'Crear destino:'; ?></h3>
             <!-- Formulario para agregar un destino -->
-            <form action="admin.php?action=<?php echo isset($editDestination) ? 'update-destination' : 'create-destination'; ?>"
+            <form
+                action="admin.php?action=<?php echo isset($editDestination) ? 'update-destination' : 'create-destination'; ?>"
                 method="POST" class="mb-3" enctype="multipart/form-data">
                 <div class="row">
                     <?php if (isset($editDestination)): ?>
-                        <input type="hidden" name="destination_id" value='<?php echo isset($editDestination) ? $editDestination['DestinationID'] : ''; ?>'>
+                        <input type="hidden" name="destination_id"
+                            value='<?php echo isset($editDestination) ? $editDestination['DestinationID'] : ''; ?>'>
                     <?php endif; ?>
                     <div class="col-md-3">
                         <input type="text" name="destination_name" class="form-control" placeholder="Nombre del Destino"
@@ -113,13 +119,11 @@
                     </div>
                     <div class="col-md-3">
                         <input type="text" name="location" class="form-control" placeholder="Ubicación"
-                            value="<?php echo isset($editDestination) ? $editDestination['Location'] : ''; ?>"
-                            required>
+                            value="<?php echo isset($editDestination) ? $editDestination['Location'] : ''; ?>" required>
                     </div>
                     <div class="col-md-2">
                         <input type="number" step="0.01" name="price" class="form-control" placeholder="Precio"
-                            value="<?php echo isset($editDestination) ? $editDestination['Price'] : ''; ?>"
-                            required>
+                            value="<?php echo isset($editDestination) ? $editDestination['Price'] : ''; ?>" required>
                     </div>
                     <div class="col-md-2">
                         <input type="file" name="image" class="form-control" accept="">
@@ -130,13 +134,17 @@
                         }
                         ?>
                     </div>
-                    <div class="col-md-2" >
-                        <select name="category_id" class="form-select" id="category_select" data-selected-category="<?php echo isset($editDestination) ? $editDestination['CategoryID'] : ''; ?>" required>
-                            <option value="" disabled <?= !isset($editDestination['CategoryName']) ? 'selected' : ''; ?>>Seleccione Categoría</option>
+                    <div class="col-md-2">
+                        <select name="category_id" class="form-select" id="category_select"
+                            data-selected-category="<?php echo isset($editDestination) ? $editDestination['CategoryID'] : ''; ?>"
+                            required>
+                            <option value="" disabled <?= !isset($editDestination['CategoryName']) ? 'selected' : ''; ?>>
+                                Seleccione Categoría</option>
                         </select>
                     </div>
                     <div class="col-md-1">
-                        <button type="submit" name="<?php echo isset($editDestination) ? 'update_destination' : 'add_destination'; ?>"
+                        <button type="submit"
+                            name="<?php echo isset($editDestination) ? 'update_destination' : 'add_destination'; ?>"
                             class="btn btn-primary">
                             <?php echo isset($editDestination) ? 'Actualizar' : 'Agregar'; ?>
                         </button>
@@ -167,10 +175,13 @@
             <h2>Viajes Programados</h2>
             <h3><?php echo $title_action_programmedTrip ?? 'Crear viaje programado:'; ?></h3>
             <!-- Formulario para agregar un viaje programado -->
-            <form action="admin.php?action=<?php echo isset($editprogrammedTrip) ? 'update-programmed-trip' : 'create-programmed-trip'; ?>" method="POST" class="mb-3">
+            <form
+                action="admin.php?action=<?php echo isset($editprogrammedTrip) ? 'update-programmed-trip' : 'create-programmed-trip'; ?>"
+                method="POST" class="mb-3">
                 <div class="row">
                     <?php if (isset($editprogrammedTrip)): ?>
-                        <input type="hidden" name="programmedTrip_id" value='<?php echo $editprogrammedTrip['ProgrammedTripID']; ?>'>
+                        <input type="hidden" name="programmedTrip_id"
+                            value='<?php echo $editprogrammedTrip['ProgrammedTripID']; ?>'>
                     <?php endif; ?>
                     <div class="col-md-3">
                         <input type="text" name="trip_name" class="form-control" placeholder="Nombre del Viaje"
@@ -204,13 +215,16 @@
                             value="<?php echo isset($editprogrammedTrip) ? $editprogrammedTrip['Price'] : ''; ?>"
                             required>
                     </div>
-                    <div class="col-md-3" >
-                        <select name="destination_id" id="destination_select" class="form-select" data-selected-destination="<?php echo isset($editprogrammedTrip) ? $editprogrammedTrip['DestinationID'] : ''; ?>" required>
+                    <div class="col-md-3">
+                        <select name="destination_id" id="destination_select" class="form-select"
+                            data-selected-destination="<?php echo isset($editprogrammedTrip) ? $editprogrammedTrip['DestinationID'] : ''; ?>"
+                            required>
                             <option value="" disabled <?= !isset($editprogrammedTrip['DestinationName']) ? 'selected' : ''; ?>>Seleccione destino</option>
                         </select>
                     </div>
                     <div class="col-md-1">
-                        <button type="submit" name="<?php echo isset($editprogrammedTrip) ? 'update_programmedTrip' : 'add_programmedTrip'; ?>"
+                        <button type="submit"
+                            name="<?php echo isset($editprogrammedTrip) ? 'update_programmedTrip' : 'add_programmedTrip'; ?>"
                             class="btn btn-primary">
                             <?php echo isset($editprogrammedTrip) ? 'Actualizar' : 'Agregar'; ?>
                         </button>
@@ -244,15 +258,18 @@
             <h2>Métodos de Pago</h2>
             <h3><?php echo $title_action_paymentMethod ?? 'Crear método de pago:'; ?></h3>
             <!-- Formulario para agregar un método de pago -->
-            <form action="admin.php?action=<?php echo isset($editpaymentMethod) ? 'update-payment-method' : 'create-payment-method'; ?>" method="POST" class="mb-3">
+            <form
+                action="admin.php?action=<?php echo isset($editpaymentMethod) ? 'update-payment-method' : 'create-payment-method'; ?>"
+                method="POST" class="mb-3">
                 <?php if (isset($editpaymentMethod)): ?>
-                    <input type="hidden" name="paymentMethod_id" value='<?php echo $editpaymentMethod['PaymentMethodID']; ?>'>
+                    <input type="hidden" name="paymentMethod_id"
+                        value='<?php echo $editpaymentMethod['PaymentMethodID']; ?>'>
                 <?php endif; ?>
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="text" name="payment_method_name" class="form-control" placeholder="Nombre del Método"
-                            value="<?php echo isset($editpaymentMethod) ? $editpaymentMethod['Name'] : ''; ?>"
-                            required>
+                        <input type="text" name="payment_method_name" class="form-control"
+                            placeholder="Nombre del Método"
+                            value="<?php echo isset($editpaymentMethod) ? $editpaymentMethod['Name'] : ''; ?>" required>
                     </div>
                     <div class="col-md-6">
                         <input type="text" name="description" class="form-control" placeholder="Descripción"
@@ -260,7 +277,8 @@
                             required>
                     </div>
                     <div class="col-md-1">
-                        <button type="submit" name="<?php echo isset($editpaymentMethod) ? 'update_paymentMethod' : 'add_paymentMethod'; ?>"
+                        <button type="submit"
+                            name="<?php echo isset($editpaymentMethod) ? 'update_paymentMethod' : 'add_paymentMethod'; ?>"
                             class="btn btn-primary">
                             <?php echo isset($editpaymentMethod) ? 'Actualizar' : 'Agregar'; ?>
                         </button>
@@ -289,7 +307,8 @@
             <h2>Actividades</h2>
             <h3><?php echo $title_action_activity ?? 'Crear actividad:'; ?></h3>
             <!-- Formulario para agregar o editar una actividad -->
-            <form action="admin.php?action=<?php echo isset($editActivity) ? 'update-activity' : 'create-activity'; ?>" method="POST" class="mb-3">
+            <form action="admin.php?action=<?php echo isset($editActivity) ? 'update-activity' : 'create-activity'; ?>"
+                method="POST" class="mb-3">
                 <?php if (isset($editActivity)): ?>
                     <input type="hidden" name="activity_id" value="<?php echo $editActivity['ActivityID']; ?>">
                 <?php endif; ?>
@@ -297,22 +316,19 @@
                     <div class="col-md-4">
                         <input type="text" name="activity_name" class="form-control"
                             placeholder="Nombre de la Actividad"
-                            value="<?php echo isset($editActivity) ? $editActivity['Name'] : ''; ?>"
-                            required>
+                            value="<?php echo isset($editActivity) ? $editActivity['Name'] : ''; ?>" required>
                     </div>
                     <div class="col-md-5">
-                        <input type="text" name="description" class="form-control"
-                            placeholder="Descripción"
+                        <input type="text" name="description" class="form-control" placeholder="Descripción"
                             value="<?php echo isset($editActivity) ? $editActivity['Description'] : ''; ?>">
                     </div>
                     <div class="col-md-2">
-                        <input type="number" step="0.01" name="price" class="form-control"
-                            placeholder="Precio"
-                            value="<?php echo isset($editActivity) ? $editActivity['Price'] : ''; ?>"
-                            required>
+                        <input type="number" step="0.01" name="price" class="form-control" placeholder="Precio"
+                            value="<?php echo isset($editActivity) ? $editActivity['Price'] : ''; ?>" required>
                     </div>
                     <div class="col-md-1">
-                        <button type="submit" name="<?php echo isset($editActivity) ? 'update_activity' : 'add_activity'; ?>"
+                        <button type="submit"
+                            name="<?php echo isset($editActivity) ? 'update_activity' : 'add_activity'; ?>"
                             class="btn btn-primary">
                             <?php echo isset($editActivity) ? 'Actualizar' : 'Agregar'; ?>
                         </button>
@@ -338,4 +354,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../scripts/scriptAdmin.js"></script>
 </body>
+
 </html>

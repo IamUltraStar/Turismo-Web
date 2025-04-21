@@ -1,10 +1,12 @@
 <?php
 require_once("../db/ConexionSQL.php");
 
-class User{
-    function executeLogin($username, $password){
+class User
+{
+    function executeLogin($username, $password)
+    {
         $valueLogin = false;
-        try{
+        try {
             $objConexionSQL = new ConexionSQL();
             $connection = $objConexionSQL->ExecuteConnection();
 
@@ -14,22 +16,23 @@ class User{
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if($row = $result->fetch_assoc()){
+            if ($row = $result->fetch_assoc()) {
                 if (password_verify($password, $row['Password'])) {
                     $valueLogin = $row['UserID'];
                 }
             }
             $stmt->close();
             $connection->close();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
-        
+
         return $valueLogin;
     }
-    
-    function executeRegister($name, $email, $username, $password){
-        try{
+
+    function executeRegister($name, $email, $username, $password)
+    {
+        try {
             $objConexionSQL = new ConexionSQL();
             $connection = $objConexionSQL->ExecuteConnection();
 
@@ -43,14 +46,15 @@ class User{
 
             $stmt->close();
             $connection->close();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
 
         return $UserID;
     }
 
-    function getDataUserByID($UserID){
+    function getDataUserByID($UserID)
+    {
         try {
             $objConexionSQL = new ConexionSQL();
             $connection = $objConexionSQL->ExecuteConnection();
@@ -64,30 +68,32 @@ class User{
             $stmt->close();
             $connection->close();
 
-            if($row = $result->fetch_assoc()){
+            if ($row = $result->fetch_assoc()) {
                 return $row;
-            }else{
+            } else {
                 return false;
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    function checkErrorsLogin($username, $password){
-        if($username == '' || $password == '') {
+    function checkErrorsLogin($username, $password)
+    {
+        if ($username == '' || $password == '') {
             return false;
         }
         return true;
     }
 
-    function checkErrorsRegister($name, $email, $username, $password, $password1) {
+    function checkErrorsRegister($name, $email, $username, $password, $password1)
+    {
         $domains_allowed = ['@gmail.com', "@hotmail.com", "@outlook.com"];
-    
+
         if ($name == "" || $username == "" || $email == "" || $password == "" || $password1 == "") {
             return '3';
         }
-    
+
         if ($password != $password1) {
             return '4';
         }
@@ -96,7 +102,7 @@ class User{
         if (!in_array($domain, $domains_allowed)) {
             return '5';
         }
-    
+
         try {
             $objConexionSQL = new ConexionSQL();
             $connection = $objConexionSQL->ExecuteConnection();
@@ -106,9 +112,9 @@ class User{
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
-        
+
             $stmt->close();
-            
+
             if ($result->num_rows > 0) {
                 $connection->close();
                 return '6';
@@ -119,17 +125,17 @@ class User{
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $result = $stmt->get_result();
-        
+
             $stmt->close();
             $connection->close();
 
             if ($result->num_rows > 0) {
                 return '7';
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
-    
+
         return '0';
     }
 }

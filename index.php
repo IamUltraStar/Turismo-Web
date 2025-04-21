@@ -1,2 +1,2 @@
 <?php
-header("Location: src/controllers/view.php");
+header("Location: src/app/");

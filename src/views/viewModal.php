@@ -85,6 +85,6 @@
     }
 
     function closeDialogModal() {
-        document.body.style.overflow = "visible";
+        document.body.style.overflowY = "visible";
     }
 </script>

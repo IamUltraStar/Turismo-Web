@@ -7,6 +7,16 @@
     font-family: 'Poppins Regular', Arial;
 }
 
+body {
+    display: flex;
+    position: relative;
+    overflow-x: hidden;
+}
+
+main {
+    transition: transform 0.3s ease;
+}
+
 button {
     cursor: pointer;
 }
@@ -83,20 +93,4 @@ section {
 
 .card_body__description {
     text-overflow: ellipsis;
-}
-
-@keyframes zoom {
-    from {
-        -moz-transform: scale(1);
-        transform: scale(1);
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1)
-    }
-
-    to {
-        -moz-transform: scale(1.2);
-        transform: scale(1.2);
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2)
-    }
 }

@@ -7,6 +7,16 @@
     font-family: 'Poppins Regular', Arial;
 }
 
+body {
+    display: flex;
+    position: relative;
+    overflow-x: hidden;
+}
+
+main {
+    transition: transform 0.3s ease;
+}
+
 button {
     cursor: pointer;
 }
@@ -145,11 +155,13 @@ section {
 
 .contact_us_section__information div {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
-.contact_us_section__information div i {
-    font-size: 30px;
+.contact_us_section__information div svg {
+    width: 36px;
+    min-width: 36;
 }
 
 .contact_us_section__information div p {
@@ -243,12 +255,6 @@ section {
     font-size: 0.8rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    :root {
-        scroll-behavior: smooth;
-    }
-}
-
 @media (width < 1050px) {
     .about_us_section {
         flex-direction: column;
@@ -267,10 +273,6 @@ section {
 }
 
 @media (width < 800px) {
-    .hero_section__header {
-        display: none;
-    }
-
     .contact_us_section {
         flex-direction: column;
     }
@@ -306,21 +308,5 @@ section {
     .contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus) + .contact_us_input__label {
         top: -18px;
         font-size: 0.66rem;
-    }
-}
-
-@keyframes zoom {
-    from {
-        -moz-transform: scale(1);
-        transform: scale(1);
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1)
-    }
-
-    to {
-        -moz-transform: scale(1.2);
-        transform: scale(1.2);
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2)
     }
 }

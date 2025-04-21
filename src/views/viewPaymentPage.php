@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información del pago</title>
     <link rel="icon" href="../../assets/img/enterprise_logo.png">
     <link rel="stylesheet" href="../../assets/css/stylePaymentPage.css">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
+
 <body>
     <section class="payment_page_section">
         <header class="payment_page_section__header">
@@ -40,7 +43,9 @@
                             <td id="trip-price"></td>
                         </tr>
                         <tr>
-                            <td class="separator-row" colspan="2"><hr></td>
+                            <td class="separator-row" colspan="2">
+                                <hr>
+                            </td>
                         </tr>
                         <tr>
                             <td>Subtotal</td>
@@ -51,7 +56,9 @@
                             <td id="igv"></td>
                         </tr>
                         <tr>
-                            <td class="separator-row" colspan="2"><hr></td>
+                            <td class="separator-row" colspan="2">
+                                <hr>
+                            </td>
                         </tr>
                         <tr>
                             <td>Total</td>
@@ -59,7 +66,7 @@
                         </tr>
                     </table>
                 </div>
-                <form class="column" action="authentication.php?action=execute-pay" method="POST">
+                <form class="column" action="./payment/execute-payment" method="POST">
                     <h3 class="title">Pago</h3>
                     <input type="hidden" name="ProgrammedTripID" value="<?php echo $ProgrammedTripID; ?>">
                     <input type="hidden" name="PhoneNumber" value="<?php echo $PhoneNumber; ?>">
@@ -95,37 +102,37 @@
     <script>
         const ProgrammedTripID = <?php echo $ProgrammedTripID; ?>;
 
-        fetch("data.php?action=get-programmed-trip", {
-            method: "POST",
+        fetch(`./getProgrammedTrip?trip=${ProgrammedTripID}`, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: `ProgrammedTripID=${ProgrammedTripID}`
         })
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return response.json();
-        })
-        .then(data => {
-            document.getElementById("trip-name").innerText = data.ProgrammedTripName || "--";
-            document.getElementById("num-people").innerText = <?php echo $NumberPeople; ?>;
-            document.getElementById("trip-date").innerText = data.StartDate || "--";
-            document.getElementById("trip-price").innerText = `S/${data.Price || "--.--"}`;
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("trip-name").innerText = data.ProgrammedTripName || "--";
+                document.getElementById("num-people").innerText = <?php echo $NumberPeople; ?>;
+                document.getElementById("trip-date").innerText = data.StartDate || "--";
+                document.getElementById("trip-price").innerText = `S/${data.Price || "--.--"}`;
 
-            let numPeople = parseFloat(<?php echo $NumberPeople; ?>);
-            let pricePerPerson = parseFloat(data.Price || 0);
-            let subtotal = numPeople * pricePerPerson;
-            let igv = subtotal * 0.18;
-            let total = subtotal + igv;
+                let numPeople = parseFloat(<?php echo $NumberPeople; ?>);
+                let pricePerPerson = parseFloat(data.Price || 0);
+                let subtotal = numPeople * pricePerPerson;
+                let igv = subtotal * 0.18;
+                let total = subtotal + igv;
 
-            document.getElementById("subtotal").innerText = `S/${subtotal.toFixed(2)}`;
-            document.getElementById("igv").innerText = `S/${igv.toFixed(2)}`;
-            document.getElementById("total").innerText = `S/${total.toFixed(2)}`;
-            document.getElementById("total_input_hidden").value = total;
-        })
-        .catch(error => {
-            console.error("Error al cargar los destinos:", error);
-        });
+                document.getElementById("subtotal").innerText = `S/${subtotal.toFixed(2)}`;
+                document.getElementById("igv").innerText = `S/${igv.toFixed(2)}`;
+                document.getElementById("total").innerText = `S/${total.toFixed(2)}`;
+                document.getElementById("total_input_hidden").value = total;
+            })
+            .catch(error => {
+                console.error("Error al cargar los destinos:", error);
+            });
     </script>
 </body>
+
 </html>

@@ -58,19 +58,19 @@ switch ($action) {
         break;
 
     case 'update-category':
-        if(isset($_POST['update_category'])){
-            $idCategory = isset($_POST['category_id']) ? $_POST['category_id'] : null; 
+        if (isset($_POST['update_category'])) {
+            $idCategory = isset($_POST['category_id']) ? $_POST['category_id'] : null;
             $name = isset($_POST['name']) ? $_POST['name'] : null;
             $description = isset($_POST['description']) ? $_POST['description'] : null;
-    
+
             $categoryModel = new CategoryDestination();
-    
+
             if ($idCategory) {
                 $result = $categoryModel->updateCategoryDestination($idCategory, $name, $description);
-                $message = $result ?  "Categoría actualizada con éxito" : "Error al actualizar la categoría";
-                
-            } 
-            
+                $message = $result ? "Categoría actualizada con éxito" : "Error al actualizar la categoría";
+
+            }
+
             header("Location: ../controllers/view.php?view=view-admin");
         }
         break;
@@ -82,21 +82,21 @@ switch ($action) {
             if ($idCategory) {
                 $categoryModel = new CategoryDestination();
                 $result = $categoryModel->deleteCategoryDestination($idCategory);
-    
+
                 if ($result) {
                     echo "Categoría eliminada con éxito";
                     header("Location: ../controllers/view.php?view=view-admin");
                     exit;
                 } else {
                     echo "Error al eliminar la categoria";
-                    
+
                 }
             } else {
                 echo "ID de actividad requerido";
             }
         }
         break;
-        
+
     case 'list-destination':
         $descriptionModel = new Destination();
         $arrayDestinations = $descriptionModel->listDestination();
@@ -129,21 +129,21 @@ switch ($action) {
             $description = isset($_POST['description']) ? $_POST['description'] : null;
             $location = isset($_POST['location']) ? $_POST['location'] : null;
             $price = isset($_POST['price']) ? $_POST['price'] : null;
-            $image = isset($_FILES['image']) ? $_FILES['image']['name'] : null; 
+            $image = isset($_FILES['image']) ? $_FILES['image']['name'] : null;
             $categoryID = isset($_POST['category_id']) ? $_POST['category_id'] : null;
-            
+
             if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
                 echo "Error al subir el archivo. Código de error: " . $_FILES['image']['error'];
                 exit;
             }
-            
+
             if (!$image) {
                 $imagepath = '';
-            }else{
-                $imagepath='../../assets/img/';
-                $imagepath.=basename($image);
+            } else {
+                $imagepath = '../../assets/img/';
+                $imagepath .= basename($image);
             }
-           
+
             if ($name && $description && $location && $price && $image && $categoryID) {
                 $destinationModel = new Destination();
                 $result = $destinationModel->createDestination($name, $description, $location, $price, $imagepath, $categoryID);
@@ -162,7 +162,7 @@ switch ($action) {
         break;
 
     case 'update-destination':
-        if(isset($_POST['update_destination'])){
+        if (isset($_POST['update_destination'])) {
             $idDest = isset($_POST['destination_id']) ? $_POST['destination_id'] : null;
             $name = isset($_POST['destination_name']) ? $_POST['destination_name'] : null;
             $description = isset($_POST['description']) ? $_POST['description'] : null;
@@ -173,9 +173,9 @@ switch ($action) {
 
             if (!$image) {
                 $imagepath = $_POST['image-path'];
-            }else{
-                $imagepath='../../assets/img/';
-                $imagepath.=basename($image);
+            } else {
+                $imagepath = '../../assets/img/';
+                $imagepath .= basename($image);
             }
 
             $destinationModel = new Destination();
@@ -183,7 +183,7 @@ switch ($action) {
             if ($idDest) {
                 $result = $destinationModel->updateDestination($idDest, $name, $description, $location, $price, $imagepath, $categoryID);
                 $message = $result ? "Destino actualizado con éxito" : "Error al actualizar el destino";
-            } 
+            }
             header("Location: ../controllers/view.php?view=view-admin");
         }
         break;
@@ -208,7 +208,7 @@ switch ($action) {
             }
         }
         break;
-        
+
     case 'list-programmed-trip':
         $programmedTripModel = new ProgrammedTrip();
         $arrayProgrammedTrips = $programmedTripModel->listProgrammedTrip();
@@ -265,7 +265,7 @@ switch ($action) {
         break;
 
     case 'update-programmed-trip':
-        if(isset($_POST['update_programmedTrip'])){
+        if (isset($_POST['update_programmedTrip'])) {
             $programmedTripID = isset($_POST['programmedTrip_id']) ? $_POST['programmedTrip_id'] : null;
             $name = isset($_POST['trip_name']) ? $_POST['trip_name'] : null;
             $description = isset($_POST['description']) ? $_POST['description'] : null;
@@ -281,8 +281,8 @@ switch ($action) {
                 $result = $programmedTripModel->updateProgrammedTrip($programmedTripID, $name, $description, $startDate, $endDate, $maxCapacity, $price, $destinationID);
                 $message = $result ? "programacion de viaje actualizado con éxito" : "Error al actualizar programacion de viaje";
             }
-            
-            header("Location: ../controllers/view.php?view=view-admin");
+
+            header("Location: ./admin");
         }
         break;
 
@@ -357,17 +357,17 @@ switch ($action) {
         break;
 
     case 'update-payment-method':
-        if(isset($_POST['update_paymentMethod'])){
+        if (isset($_POST['update_paymentMethod'])) {
             $idPaymentMethod = isset($_POST['paymentMethod_id']) ? $_POST['paymentMethod_id'] : null;
-            $name = isset($_POST['payment_method_name']) ? $_POST['payment_method_name']: null;
-            $description = isset($_POST['description'])? $_POST['description']: null;
+            $name = isset($_POST['payment_method_name']) ? $_POST['payment_method_name'] : null;
+            $description = isset($_POST['description']) ? $_POST['description'] : null;
 
             $paymentMethodModel = new PaymentMethod();
 
             if ($idPaymentMethod) {
                 $result = $paymentMethodModel->updatePaymentMethod($idPaymentMethod, $name, $description);
                 $message = $result ? "metodo de pago actualizada con éxito" : "Error al actualizar el metodo de pago";
-            } 
+            }
             header("Location: ../controllers/view.php?view=view-admin");
         }
         break;
@@ -379,7 +379,7 @@ switch ($action) {
             if ($idPaymentMethod) {
                 $paymentMethodModel = new PaymentMethod();
                 $result = $paymentMethodModel->deletePaymentMethod($idPaymentMethod);
-            
+
                 if ($result) {
                     echo "metodo de pago eliminada con éxito";
                     header("Location: ../controllers/view.php?view=view-admin");
@@ -445,23 +445,23 @@ switch ($action) {
         break;
 
     case 'update-activity':
-        if(isset($_POST['update_activity'])){
+        if (isset($_POST['update_activity'])) {
 
             $idActiv = isset($_POST['activity_id']) ? $_POST['activity_id'] : null;
             $name = $_POST['activity_name'];
             $description = $_POST['description'];
             $price = $_POST['price'];
-    
+
             $title_action_activity = "Editar actividad:";
-    
+
             $activityModel = new Activity();
-    
+
             if ($idActiv) {
                 // Actualizar la actividad
                 $result = $activityModel->updateActivity($idActiv, $name, $description, $price);
                 $message = $result ? "Actividad actualizada con éxito" : "Error al actualizar la actividad";
-            } 
-    
+            }
+
             header("Location: ../controllers/view.php?view=view-admin");
         }
         break;

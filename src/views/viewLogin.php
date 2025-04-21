@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="icon" href="../../assets/img/enterprise_logo.png">
     <link rel="stylesheet" href="../../assets/css/styleLogin.css">
 </head>
+
 <body>
     <section class="login_section">
         <header class="login_section__header">
@@ -33,7 +35,7 @@
                     <label class="login_input__label" for="">Contraseña</label>
                 </div>
                 <button data-form-id="form-login">Iniciar sesión</button>
-                <p>No estas registrado? <a href="view.php?view=view-register">Registrate ahora</a></p>
+                <p>No estas registrado? <a href="./register">Registrate ahora</a></p>
             </form>
             <form id="form-register" class="form_login <?php echo $visibleFormRegister; ?>">
                 <div class="login_input_box">
@@ -63,7 +65,7 @@
                     </div>
                 </div>
                 <button data-form-id="form-register">Registrarme</button>
-                <p>Ya estas registrado? <a href="view.php?view=view-login">Inicia sesión ahora</a></p>
+                <p>Ya estas registrado? <a href="./login">Inicia sesión ahora</a></p>
             </form>
         </div>
     </section>
@@ -75,15 +77,15 @@
                 const formID = this.getAttribute('data-form-id');
                 const form = document.getElementById(formID);
                 const formData = new FormData(form);
-                
+
                 // Convertir FormData a un formato URL-encoded para AJAX
                 const params = new URLSearchParams();
                 for (let [key, value] of formData) {
                     params.append(key, value);
                 }
 
-                const actionUrl = formID == "form-login" ? "../controllers/authentication.php?action=execute-login" : "../controllers/authentication.php?action=execute-register";
-                
+                const actionUrl = formID == "form-login" ? "./login/execute-login" : "./login/execute-register";
+
                 try {
                     const response = await fetch(actionUrl, {
                         method: "POST",
@@ -97,7 +99,7 @@
                         if (result !== "0" && result !== "-1") {
                             handleModal(result);
                         } else {
-                            window.location.href = result === "0" ? "view.php" : "view.php?view=view-admin";
+                            window.location.href = result === "0" ? "./" : "./admin";
                         }
                     } else {
                         console.error("Error al enviar el formulario:", response.status);
@@ -125,13 +127,13 @@
 
             if (!document.getElementById('dialog-modal')) {
                 fetch("../views/viewModal.php")
-                .then(res => res.text())
-                .then(html => {
-                    document.body.insertAdjacentHTML("beforeend", html);
-                    document.getElementById('title-modal').innerText = '¡Ups! Algo Ocurrió';
-                    document.getElementById('msg-modal').innerText = msgModal;
-                });
-            }else{
+                    .then(res => res.text())
+                    .then(html => {
+                        document.body.insertAdjacentHTML("beforeend", html);
+                        document.getElementById('title-modal').innerText = '¡Ups! Algo Ocurrió';
+                        document.getElementById('msg-modal').innerText = msgModal;
+                    });
+            } else {
                 document.getElementById('dialog-modal').show();
                 document.getElementById('title-modal').innerText = '¡Ups! Algo Ocurrió';
                 document.getElementById('msg-modal').innerText = msgModal;
@@ -139,4 +141,5 @@
         }
     </script>
 </body>
+
 </html>

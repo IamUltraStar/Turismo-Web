@@ -15,6 +15,7 @@ $routes->get("listDestinations", "DestinationsController::listDestinations");
 $routes->get("listPopularDestinations", "DestinationsController::listPopularDestinations");
 $routes->get("listActivityByDestination", "DestinationsController::listActivityByDestination");
 $routes->get("listDestinationSearched", "DestinationsController::listDestinationSearched");
+$routes->post("destinations/send-review", "DestinationsController::sendReview");
 
 // Planning Trip
 $routes->get("formPlanningTrip", "PlanningTripController::index");

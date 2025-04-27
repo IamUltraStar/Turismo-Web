@@ -4,6 +4,39 @@ let map, placeDetails;
     const url = new URL(window.location);
     const destinationId = url.searchParams.get("dest");
 
+    document
+        .getElementById("stars")
+        .querySelectorAll("button")
+        .forEach((button, index) => {
+            button.addEventListener("click", (event) => {
+                const selectedRating = index + 1;
+                document.getElementById("rating").value = selectedRating;
+
+                document
+                    .getElementById("stars")
+                    .querySelectorAll("button")
+                    .forEach((btn, i) => {
+                        if (i + 1 <= selectedRating) {
+                            btn.querySelector("svg").classList.value =
+                                "w-6 h-6 transition-colors";
+                            btn.querySelector("svg").classList.add(
+                                "fill-amber-400",
+                                "text-amber-400"
+                            );
+                        } else {
+                            btn.querySelector("svg").classList.value =
+                                "w-6 h-6 transition-colors";
+                            btn.querySelector("svg").classList.add(
+                                "text-gray-600",
+                                "hover:fill-amber-200",
+                                "hover:text-amber-200"
+                            );
+                        }
+                        console.log("btnupdated");
+                    });
+            });
+        });
+
     try {
         const response = await fetch(
             `./listActivityByDestination?dest=${destinationId}`

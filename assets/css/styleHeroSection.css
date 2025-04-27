@@ -234,7 +234,7 @@
 }
 
 .hero_section__cta_box h1 {
-    font-size: 3rem;
+    font-size: 3rem !important;
     line-height: 1.4;
 }
 

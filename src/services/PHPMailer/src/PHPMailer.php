@@ -366,7 +366,6 @@ class PHPMailer
     /**
      * An implementation of the PHPMailer OAuthTokenProvider interface.
      *
-     * @var OAuthTokenProvider
      */
     protected $oauth;
 
@@ -429,7 +428,6 @@ class PHPMailer
      *
      * @see SMTP::$Debugoutput
      *
-     * @var string|callable|\Psr\Log\LoggerInterface
      */
     public $Debugoutput = 'echo';
 
@@ -5352,21 +5350,4 @@ class PHPMailer
         }
     }
 
-    /**
-     * Get the OAuthTokenProvider instance.
-     *
-     * @return OAuthTokenProvider
-     */
-    public function getOAuth()
-    {
-        return $this->oauth;
-    }
-
-    /**
-     * Set an OAuthTokenProvider instance.
-     */
-    public function setOAuth(OAuthTokenProvider $oauth)
-    {
-        $this->oauth = $oauth;
-    }
 }

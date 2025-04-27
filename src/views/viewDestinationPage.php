@@ -9,35 +9,47 @@
     <link rel="stylesheet" href="<?= base_url("../../assets/css/styleHeroSection.css") ?>">
     <link rel="stylesheet" href="<?= base_url("../../assets/css/styleDestinationPage.css") ?>">
     <link rel="stylesheet" href="<?= base_url("../../assets/css/styleFooter.css") ?>">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.0.1/maptiler-sdk.umd.min.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.0.1/maptiler-sdk.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="initLoader">
-        <canvas id="canvas" width="220" height="220"></canvas>
-    </div>
-    <script type="module">
-        history.scrollRestoration = 'manual';
+    <?php if (isset($_SESSION['modal'])): ?>
+        <?php
+        $titleModal = $_SESSION['modal']['title'];
+        $msgModal = $_SESSION['modal']['message'];
 
-        document.body.style.overflow = "hidden";
-        import { DotLottie } from "<?= base_url("../services/DotLottie/DotLottie.js") ?>";
+        include(ROOT_PATH . '/views/viewModal.php');
 
-        new DotLottie({
-            autoplay: true,
-            loop: true,
-            speed: 1.5,
-            canvas: document.getElementById("canvas"),
-            src: "<?= base_url("../../assets/lottie/utmuJXMSRn.lottie") ?>",
-        });
+        unset($_SESSION['modal']);
+        ?>
+    <?php else: ?>
+        <div class="initLoader">
+            <canvas id="canvas" width="220" height="220"></canvas>
+        </div>
+        <script type="module">
+            history.scrollRestoration = 'manual';
 
-        window.scrollTo(0, 0);
+            document.body.style.overflow = "hidden";
+            import { DotLottie } from "<?= base_url("../services/DotLottie/DotLottie.js") ?>";
 
-        setTimeout(() => {
-            document.body.style.overflow = "auto";
-            document.querySelector(".initLoader").style.display = "none";
-        }, 4000);
-    </script>
+            new DotLottie({
+                autoplay: true,
+                loop: true,
+                speed: 1.5,
+                canvas: document.getElementById("canvas"),
+                src: "<?= base_url("../../assets/lottie/utmuJXMSRn.lottie") ?>",
+            });
+
+            window.scrollTo(0, 0);
+
+            setTimeout(() => {
+                document.body.style.overflow = "auto";
+                document.querySelector(".initLoader").style.display = "none";
+            }, 3200); // 3200
+        </script>
+    <?php endif; ?>
     <input id="dynamic_burger_input" type="checkbox" class="hidden">
     <aside class="hero_section__sidebar" id="dynamic_sidebar">
         <a href="<?= base_url() ?>" class="img_box__a">
@@ -114,55 +126,82 @@
                 </div>
             </div>
             <div class="information_section__photos">
-                <h1>Fotos de usuarios</h1>
+                <h1 class="text-xl font-semibold">Fotos de usuarios</h1>
                 <div id="information_section__photos_container">
                     No hay fotos disponibles.
                 </div>
             </div>
-            <div class="information_section__reviews">
-                <h1>Comentarios</h1>
-                <div id="information_section__reviews_container" class="information_section__reviews_container">
-                    <?php if (isset($dataReviews)): ?>
-                        <?php foreach ($dataReviews as $review): ?>
-                            <div class="information_section__reviews_container__review">
-                                <div class="information_section__reviews_container__review__user">
-                                    <!-- <img src="" alt=""> -->
-                                    <p><?php echo $review['FullName']; ?></p>
-                                    <p><?= $review['ReviewDate'] ?></p>
-                                </div>
-                                <div class="information_section__reviews_container__review__rating">
-                                    <p><?php echo $review['Rating']; ?></p>
-                                    <div class="stars">
-                                        <?php for ($i = 0; $i < $review['Rating']; $i++): ?>
-                                            <i class="fi fi-rr-star"></i>
-                                        <?php endfor; ?>
+            <div class="information_section__reviews space-y-8">
+                <div class="space-y-6">
+                    <h2 class="text-xl font-semibold">Comentarios</h2>
+                    <div class="information_section__reviews_container space-y-6">
+                        <?php if (isset($dataReviews) && !empty($dataReviews)): ?>
+                            <?php foreach ($dataReviews as $review): ?>
+                                <div class="information_section__reviews_container__review flex gap-4 p-4 border-b">
+                                    <div class="flex-shrink-0">
+                                        <img src="<?= base_url("../../assets/img/user_profile.png") ?>" alt="avatar"
+                                            loading="lazy" width="40" height="40" class="rounded-full">
+                                    </div>
+                                    <div class="flex-1 space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <div class="font-medium"><?php echo $review['FullName']; ?></div>
+                                            <div class="text-sm text-gray-600"><?= $review['ReviewDate'] ?></div>
+                                        </div>
+                                        <div class="flex">
+                                            <?php for ($i = 0; $i < 5; $i++): ?>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-star-icon lucide-star w-4 h-4 <?= ($i <= $review['Rating']) ? 'fill-amber-400 text-amber-400' : 'text-gray-600' ?>">
+                                                    <path
+                                                        d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+                                                </svg>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <p class="text-sm"><?php echo $review['Comment']; ?></p>
                                     </div>
                                 </div>
-                                <div class="information_section__reviews_container__review__text">
-                                    <p><?php echo $review['Comment']; ?></p>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p class="information_section__reviews__container__no_reviews">No hay comentarios
-                            disponibles.</p>
-                    <?php endif; ?>
-                    <div>
-                        <form id="form-review">
-                            <div class="information_section__reviews_container__review__user">
-                                <h3>Escribe tu comentario</h3>
-                            </div>
-                            <div class="information_section__reviews_container__review__rating">
-                                <input type="number" id="rating" name="rating" min="1" max="5" required>
-                                <div class="stars">
-                                </div>
-                            </div>
-                            <div class="information_section__reviews_container__review__text">
-                                <textarea id="comment" name="comment" rows="4" required></textarea>
-                            </div>
-                            <button type="submit">Enviar</button>
-                        </form>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p class="information_section__reviews__container__no_reviews">No hay comentarios
+                                disponibles.</p>
+                        <?php endif; ?>
                     </div>
+                    <form class="space-y-4 p-4 border rounded-md" action="<?= base_url("destinations/send-review") ?>"
+                        method="POST">
+                        <h2 class="text-xl font-semibold">Comparte tu experiencia</h2>
+                        <div class="information_section__reviews_container__review__rating space-y-2">
+                            <input type="hidden" name="idDest" value="<?= $dataDestination['DestinationID']; ?>">
+                            <input type="hidden" id="rating" name="rating">
+                            <label for=""
+                                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Puntuación</label>
+                            <div class="stars" id="stars">
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <button type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-star-icon lucide-star w-6 h-6 transition-colors text-gray-600 hover:fill-amber-200 hover:text-amber-200">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+                                        </svg>
+                                    </button>
+                                <?php endfor; ?>
+                            </div>
+                        </div>
+                        <div class="information_section__reviews_container__review__text space-y-2">
+                            <label for=""
+                                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Escribe
+                                tu reseña</label>
+                            <textarea
+                                class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                id="comment" name="comment" rows="4"
+                                placeholder="Comparte tu experiencia con este destino..." required></textarea>
+                        </div>
+                        <button
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-black text-white hover:bg-black/90 h-10 px-4 py-2"
+                            type="submit">Enviar reseña</button>
+                    </form>
         </section>
         <footer>
             <p>&copy; 2024 Turismo Piesco. Todos los derechos reservados.</p>

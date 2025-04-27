@@ -35,7 +35,7 @@ section {
 .destinations_section__container {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 32px;
 }
 
@@ -79,7 +79,8 @@ section {
     margin-top: 30px;
     width: 100%;
     padding: 10px 0;
-    background-color: lightblue;
+    background-color: #222;
+    color: #fff;
     border: 0;
     border-radius: 8px;
     box-shadow: 3px 3px 8px #c5c5c5, -6px -6px 12px #ffffff;
@@ -87,8 +88,8 @@ section {
 }
 
 .card_body button:active {
-    color: #666;
-    box-shadow: inset 3px 3px 8px #bbb, inset -3px -3px 8px #ffffff;
+    color: #999;
+    box-shadow: inset 2px 2px 8px #3c3c3c, inset -2px -2px 8px #4e4e4e;
 }
 
 .card_body__description {

@@ -145,7 +145,9 @@
                                     <div class="flex-1 space-y-2">
                                         <div class="flex items-center justify-between">
                                             <div class="font-medium"><?php echo $review['FullName']; ?></div>
-                                            <div class="text-sm text-gray-600"><?= $review['ReviewDate'] ?></div>
+                                            <div class="text-sm text-gray-600">
+                                                <?= strftime('%d %B, %Y', strtotime($review['ReviewDate'])); ?>
+                                            </div>
                                         </div>
                                         <div class="flex">
                                             <?php for ($i = 0; $i < 5; $i++): ?>

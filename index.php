@@ -1,2 +1,2 @@
 <?php
-header("Location: src/app/");
+header("Location: src/app");

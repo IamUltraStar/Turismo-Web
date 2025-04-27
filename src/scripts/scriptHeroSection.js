@@ -11,6 +11,7 @@ const sidebar = document.getElementById("dynamic_sidebar");
 const burger_container = document.getElementById("dynamic_burger_container");
 const burger_input = document.getElementById("dynamic_burger_input");
 const header = document.getElementById("dynamic_header");
+const scrollToTopButton = document.getElementById("scrollToTopButton");
 
 document.addEventListener("DOMContentLoaded", async () => {
     // Mostrar/ocultar el menú al hacer clic en el ícono
@@ -41,10 +42,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             burger_container.classList.add("scrolled");
             header.classList.add("scrolled");
             menu_profile_user.classList.add("scrolled");
+            scrollToTopButton.classList.remove("hidden");
         } else {
             burger_container.classList.remove("scrolled");
             header.classList.remove("scrolled");
             menu_profile_user.classList.remove("scrolled");
+            scrollToTopButton.classList.add("hidden");
         }
     });
 

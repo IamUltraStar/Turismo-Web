@@ -70,6 +70,23 @@
                 <h1>Explora todos los Destinos Disponibles</h1>
                 <p>Aquí están todos los destinos que ofrecemos a nuestros viajeros, ¡anímate a conocerlos!</p>
             </header>
+            <div class="destinations_section__filter">
+                <div class="destinations_section__filter_input">
+                    <input id="queryDestination" type="text" placeholder="Busca un destino...">
+                    <button onclick="searchDestination()">Buscar</button>
+                </div>
+                <div class="destinations_section__filter_select">
+                    <select id="select_department">
+                        <option value="">Selecciona un departamento</option>
+                        <?php foreach ($dataDestinations as $destination): ?>
+                            <option value="<?php echo $destination['Location']; ?>">
+                                <?php echo $destination['Location']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <button onclick="resetFilterInputs()">Borrar filtros</button>
+            </div>
             <div class="destinations_section__container" id="destinations_section__container"></div>
         </section>
         <footer>
@@ -88,7 +105,7 @@
             </ul>
         </footer>
     </main>
-    <a class="scrollToTopButton" href="#">
+    <a class="scrollToTopButton hidden" id="scrollToTopButton" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"
             class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />
@@ -100,6 +117,7 @@
     </script>
     <script src="../scripts/scriptHeroSection.js"></script>
     <script src="../scripts/scriptLoadDestinations.js"></script>
+    <script src="../scripts/scriptDestinationsPage.js"></script>
 </body>
 
 </html>

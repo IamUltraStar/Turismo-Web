@@ -1,0 +1,4 @@
+POST http://localhost/Turismo/src/app/register/activate HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+id=7&token=f8dca0e8ca1ec33701162e88d1a8e8dc399fb60a

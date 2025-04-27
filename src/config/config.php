@@ -1,2 +1,3 @@
 <?php
-define('ROOT_PATH', dirname(__DIR__));
+
+date_default_timezone_set('America/Lima'); // Set the timezone to Lima

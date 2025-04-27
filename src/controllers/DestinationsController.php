@@ -1,6 +1,7 @@
 <?php
 
-include("../models/Destination.php");
+// require_once ROOT_PATH . "/controllers/BaseDestinations.php";
+require_once ROOT_PATH . "/models/Destination.php";
 
 class DestinationsController
 {
@@ -19,6 +20,8 @@ class DestinationsController
             exit();
         }
 
+        $dataDestinations = $this->destinationModel->listLocation();
+
         include('../views/viewDestinationsPage.php');
     }
 
@@ -27,8 +30,7 @@ class DestinationsController
         $dataDestination = $this->destinationModel->getDestination($value);
 
         if ($dataDestination == []) {
-            header("Location: ./destinations");
-            exit();
+            return view("destinations");
         }
 
         include('../views/viewDestinationPage.php');
@@ -56,5 +58,14 @@ class DestinationsController
         }
     }
 
+    public function listDestinationSearched()
+    {
+        if (isset($_GET['query']) && isset($_GET['location'])) {
+            $dataDestinations = $this->destinationModel->listDestinationSearched($_GET['query'], $_GET['location']);
+            echo json_encode($dataDestinations);
+        } else {
+            echo json_encode([]);
+        }
+    }
 
 }

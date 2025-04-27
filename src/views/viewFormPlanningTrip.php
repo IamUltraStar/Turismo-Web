@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planificar mi viaje</title>
-    <link rel="icon" href="../../assets/img/enterprise_logo.png">
-    <link rel="stylesheet" href="../../assets/css/styleFormPlanningTrip.css">
+    <link rel="icon" href="<?= base_url("../../assets/img/enterprise_logo.png") ?>">
+    <link rel="stylesheet" href="<?= base_url("../../assets/css/styleFormPlanningTrip.css") ?>">
 </head>
 
 <body>
@@ -22,16 +22,16 @@
     ?>
     <section class="planning_trip_section">
         <header class="planning_trip_section__header" id="id=" dynamic_header"">
-            <a href="./" class="img_box__a">
-                <img src="../../assets/img/enterprise_logo.png" alt="logo de la empresa">
+            <a href="<?= base_url("") ?>" class="img_box__a">
+                <img src="<?= base_url("../../assets/img/enterprise_logo.png") ?>" alt="logo de la empresa">
             </a>
             <nav class="planning_trip_section__header__nav">
                 <button id="button_profile_user" type="button"></button>
             </nav>
             <div class="hidden" id="menu_profile_user">
                 <ul>
-                    <li><a href="">Ver Perfil</a></li>
-                    <li><a href="./logout">Cerrar Sesión</a></li>
+                    <li><a href="<?= base_url("profile") ?>">Ver Perfil</a></li>
+                    <li><a href="<?= base_url("logout") ?>">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </header>
@@ -41,7 +41,7 @@
                 <p>Conéctate con la naturaleza, la cultura y la aventura. Nuestro equipo está aquí para planear el viaje
                     perfecto para ti.</p>
             </div>
-            <form class="form_planning_trip" action="./payment" method="POST">
+            <form class="form_planning_trip" action="<?= base_url("payment") ?>" method="POST">
                 <div class="full_width">
                     <h1>Escoge tu Viaje Ideal</h1>
                     <p>Completa el formulario y te ayudaremos con el viaje perfecto.</p>
@@ -76,7 +76,7 @@
             </form>
         </div>
     </section>
-    <script src="../scripts/scriptFormPlanningTrip.js"></script>
+    <script src="<?= base_url("../scripts/scriptFormPlanningTrip.js") ?>"></script>
 </body>
 
 </html>

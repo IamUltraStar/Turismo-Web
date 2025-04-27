@@ -1,9 +1,20 @@
 <?php
 
+require_once ROOT_PATH . "/models/User.php";
+require_once ROOT_PATH . "/models/Destination.php";
+require_once ROOT_PATH . "/models/CategoryDestination.php";
+
 class AdminController
 {
+    private $destinationModel;
+    private $categoryModel;
+    private $userModel;
+
     public function __construct()
     {
+        $this->userModel = new User();
+        $this->destinationModel = new Destination();
+        $this->categoryModel = new CategoryDestination();
         session_start();
     }
 
@@ -15,12 +26,10 @@ class AdminController
                 'message' => 'Por favor, inicie sesión o regístrese para continuar a esta sección y disfrutar de nuestros servicios.'
             ];
 
-            header("Location: ./");
-            exit();
+            return view("");
         }
 
-        $objUser = new User();
-        $data = $objUser->getDataUserByID($_SESSION['UserID']);
+        $data = $this->userModel->getDataUserByID($_SESSION['UserID']);
 
         if ($data["Rol"] != "administrador") {
             $_SESSION['modal'] = [
@@ -28,25 +37,13 @@ class AdminController
                 'message' => 'Lo sentimos, esta sección está disponible solo para administradores. Si crees que esto es un error, por favor contacta con el soporte.'
             ];
 
-            header("Location: ./");
-            exit();
+            return view("");
         }
 
-        include('../views/viewAdmin.php');
+        $arrayDestinations = $this->destinationModel->listDestination();
+        $arrayCategories = $this->categoryModel->listCategoryDestination();
+
+        include(ROOT_PATH . '/views/admin/destinations.php');
     }
 
-    public function listUsers()
-    {
-        include('../views/viewAdminUsersPage.php');
-    }
-
-    public function listDestinations()
-    {
-        include('../views/viewAdminDestinationsPage.php');
-    }
-
-    public function listActivities()
-    {
-        include('../views/viewAdminActivitiesPage.php');
-    }
 }

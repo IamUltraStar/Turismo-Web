@@ -22,8 +22,7 @@ class PaymentController
                 'title' => '¡Ups! Acceso Necesario',
                 'message' => 'Por favor, inicie sesión o regístrese para continuar a esta sección y disfrutar de nuestros servicios.'
             ];
-            header('Location: ./');
-            exit();
+            return view();
         }
 
         $ProgrammedTripID = $_POST['ProgrammedTripID'];
@@ -35,8 +34,7 @@ class PaymentController
                 'title' => '¡Ups! Algo Ocurrió',
                 'message' => 'Debes completar todos los campos.'
             ];
-            header('Location: ./formPlanningTrip');
-            exit();
+            return view("formPlannigTrip");
         }
 
         include('../views/viewPaymentPage.php');
@@ -63,7 +61,7 @@ class PaymentController
             'title' => '¡Pago Exitoso!',
             'message' => 'Gracias por tu compra. Tu pago se ha procesado correctamente. Revisa tu correo para más detalles.'
         ];
-        header('Location: ./');
+        return view();
     }
 }
 

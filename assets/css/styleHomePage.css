@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins Regular', Arial;
+    font-family: "Poppins Regular", Arial;
 }
 
 body {
@@ -15,6 +15,7 @@ body {
 
 main {
     transition: transform 0.3s ease;
+    width: 100%;
 }
 
 button {
@@ -42,8 +43,7 @@ section {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    box-shadow:  6px 6px 12px #bfbfbf,
-    -6px -6px 12px #eee;
+    box-shadow: 6px 6px 12px #bfbfbf, -6px -6px 12px #eee;
 }
 
 .card img {
@@ -83,7 +83,7 @@ section {
     border: 0;
     border-radius: 8px;
     box-shadow: 3px 3px 8px #c5c5c5, -6px -6px 12px #ffffff;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
 }
 
 .card_body button:active {
@@ -138,7 +138,8 @@ section {
     scroll-margin-top: 80px;
 }
 
-.contact_us_section__information, .contact_us_section__form {
+.contact_us_section__information,
+.contact_us_section__form {
     padding: 40px;
 }
 
@@ -181,7 +182,7 @@ section {
 
 .contact_us_section__form h2 {
     color: #fff;
-} 
+}
 
 .contact_us_box {
     position: relative;
@@ -217,7 +218,8 @@ section {
     color: #fff;
 }
 
-.contact_us_input:focus, .contact_us_section__form textarea:focus {
+.contact_us_input:focus,
+.contact_us_section__form textarea:focus {
     outline: 0;
 }
 
@@ -250,7 +252,8 @@ section {
 }
 
 .contact_us_input:focus + .contact_us_input__label,
-.contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus) + .contact_us_input__label {
+.contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus)
+    + .contact_us_input__label {
     top: -18px;
     font-size: 0.8rem;
 }
@@ -276,7 +279,7 @@ section {
     .contact_us_section {
         flex-direction: column;
     }
-    
+
     .contact_us_section__information {
         width: 100%;
         border-bottom-left-radius: 0;
@@ -305,7 +308,8 @@ section {
     }
 
     .contact_us_input:focus + .contact_us_input__label,
-    .contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus) + .contact_us_input__label {
+    .contact_us_input:not(:placeholder-shown).contact_us_input:not(:focus)
+        + .contact_us_input__label {
         top: -18px;
         font-size: 0.66rem;
     }

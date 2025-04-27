@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información del pago</title>
-    <link rel="icon" href="../../assets/img/enterprise_logo.png">
-    <link rel="stylesheet" href="../../assets/css/stylePaymentPage.css">
+    <link rel="icon" href="<?= base_url("../../assets/img/enterprise_logo.png") ?>">
+    <link rel="stylesheet" href="<?= base_url("../../assets/css/stylePaymentPage.css") ?>">
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
@@ -14,7 +14,7 @@
 <body>
     <section class="payment_page_section">
         <header class="payment_page_section__header">
-            <img src="../../assets/img/enterprise_logo.png" alt="logo de la empresa">
+            <img src="<?= base_url("../../assets/img/enterprise_logo.png") ?>" alt="logo de la empresa">
         </header>
         <div class="container">
             <header>
@@ -66,7 +66,7 @@
                         </tr>
                     </table>
                 </div>
-                <form class="column" action="./payment/execute-payment" method="POST">
+                <form class="column" action="<?= base_url("payment/execute-payment") ?>" method="POST">
                     <h3 class="title">Pago</h3>
                     <input type="hidden" name="ProgrammedTripID" value="<?php echo $ProgrammedTripID; ?>">
                     <input type="hidden" name="PhoneNumber" value="<?php echo $PhoneNumber; ?>">
@@ -74,7 +74,7 @@
                     <input id="total_input_hidden" type="hidden" name="TotalAmount" value="">
                     <div class="input-box">
                         <span>Tarjetas aceptadas :</span>
-                        <img src="../../assets/img/imgcards.png" alt="">
+                        <img src="<?= base_url("../../assets/img/imgcards.png") ?>" alt="">
                     </div>
                     <div class="input-box">
                         <span>Número de Tarjeta de Crédito :</span>
@@ -100,38 +100,29 @@
         </div>
     </section>
     <script>
-        const ProgrammedTripID = <?php echo $ProgrammedTripID; ?>;
+        try {
+            const response = await fetch("<?= base_url("getProgrammedTrip?trip={$ProgrammedTripID}") ?>");
+            const data = await response.json();
 
-        fetch(`./getProgrammedTrip?trip=${ProgrammedTripID}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-        })
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                document.getElementById("trip-name").innerText = data.ProgrammedTripName || "--";
-                document.getElementById("num-people").innerText = <?php echo $NumberPeople; ?>;
-                document.getElementById("trip-date").innerText = data.StartDate || "--";
-                document.getElementById("trip-price").innerText = `S/${data.Price || "--.--"}`;
+            document.getElementById("trip-name").innerText = data.ProgrammedTripName || "--";
+            document.getElementById("num-people").innerText = <?php echo $NumberPeople; ?>;
+            document.getElementById("trip-date").innerText = data.StartDate || "--";
+            document.getElementById("trip-price").innerText = `S/${data.Price || "--.--"}`;
 
-                let numPeople = parseFloat(<?php echo $NumberPeople; ?>);
-                let pricePerPerson = parseFloat(data.Price || 0);
-                let subtotal = numPeople * pricePerPerson;
-                let igv = subtotal * 0.18;
-                let total = subtotal + igv;
+            let numPeople = parseFloat(<?php echo $NumberPeople; ?>);
+            let pricePerPerson = parseFloat(data.Price || 0);
+            let subtotal = numPeople * pricePerPerson;
+            let igv = subtotal * 0.18;
+            let total = subtotal + igv;
 
-                document.getElementById("subtotal").innerText = `S/${subtotal.toFixed(2)}`;
-                document.getElementById("igv").innerText = `S/${igv.toFixed(2)}`;
-                document.getElementById("total").innerText = `S/${total.toFixed(2)}`;
-                document.getElementById("total_input_hidden").value = total;
-            })
-            .catch(error => {
-                console.error("Error al cargar los destinos:", error);
-            });
+            document.getElementById("subtotal").innerText = `S/${subtotal.toFixed(2)}`;
+            document.getElementById("igv").innerText = `S/${igv.toFixed(2)}`;
+            document.getElementById("total").innerText = `S/${total.toFixed(2)}`;
+            document.getElementById("total_input_hidden").value = total;
+
+        } catch (error) {
+            console.error("Error al obtener el ID del viaje programado:", error);
+        }
     </script>
 </body>
 

@@ -10,19 +10,19 @@
     </div>
 </dialog>
 <style>
-    dialog {
+    #dialog-modal {
         width: 100%;
         height: 100vh;
         background: rgba(0, 0, 0, 0.5);
         border: none;
         outline: none;
         position: absolute;
-        z-index: 2;
+        z-index: 10;
         top: 0;
         left: 0;
     }
 
-    .body-dialog {
+    #dialog-modal .body-dialog {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -31,7 +31,7 @@
         backdrop-filter: blur(2px);
     }
 
-    .container-dialog {
+    #dialog-modal .container-dialog {
         padding: 30px 40px;
         border-radius: 8px;
         max-width: 480px;
@@ -39,13 +39,15 @@
         text-align: start;
         background-color: #fff;
         box-shadow: 0 0 5px 1px #0004;
+        max-height: 90%;
+        overflow-y: auto;
     }
 
-    .container-dialog h1 {
+    #dialog-modal .container-dialog h1 {
         color: #000;
     }
 
-    .container-dialog p {
+    #dialog-modal .container-dialog p {
         font-size: 0.9rem;
         margin-top: 20px;
         margin-bottom: 5px;
@@ -53,12 +55,12 @@
         word-wrap: break-word;
     }
 
-    .container-dialog form {
+    #dialog-modal .container-dialog form {
         display: flex;
         justify-content: end;
     }
 
-    .container-dialog button {
+    #dialog-modal .container-dialog button {
         color: #fff;
         font-weight: bold;
         width: 30%;
@@ -71,18 +73,12 @@
         transition: background-color 0.3s ease;
     }
 
-    .container-dialog button:hover {
+    #dialog-modal .container-dialog button:hover {
         background-color: #212121;
     }
 </style>
 <script>
     document.body.style.overflow = "hidden";
-    const urlModal = new URL(window.location);
-
-    if (urlModal.searchParams.has('msg')) {
-        urlModal.searchParams.delete('msg');
-        window.history.replaceState({}, document.title, urlModal);
-    }
 
     function closeDialogModal() {
         document.body.style.overflowY = "visible";

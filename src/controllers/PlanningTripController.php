@@ -19,8 +19,7 @@ class PlanningTripController
                 'message' => 'Por favor, inicie sesión o regístrese para continuar a esta sección y disfrutar de nuestros servicios.'
             ];
 
-            header("Location: ./");
-            exit();
+            return view();
         }
 
         include('../views/viewFormPlanningTrip.php');

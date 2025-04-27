@@ -13,6 +13,23 @@ body {
     overflow-x: hidden;
 }
 
+.initLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 9999;
+    backdrop-filter: blur(20px);
+}
+
+#canvas {
+    backdrop-filter: blur();
+    border-radius: 50%;
+    box-shadow: inset 6px -6px 20px #c5c5c520;
+}
+
 main {
     transition: transform 0.3s ease;
 }
@@ -76,7 +93,9 @@ section {
     font-weight: bold;
 }
 
-.information_section__reservation button {
+.information_section__reservation button,
+.information_section__map__options button,
+.information_section__map__options a {
     color: #090909;
     padding: 0.7em 1.7em;
     font-size: 0.98rem;
@@ -89,7 +108,8 @@ section {
 }
 
 .information_section__reservation button:active,
-.information_section__map > a:active {
+.information_section__map__options a:active,
+.information_section__map__options button:active {
     color: #666;
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
@@ -119,18 +139,13 @@ section {
     z-index: 3 !important;
 }
 
-.information_section__map > a {
-    margin-left: auto;
+.information_section__map__options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.information_section__map__options a {
     text-decoration: none;
-    color: #090909;
-    padding: 0.7em 1.7em;
-    font-size: 0.98rem;
-    border-radius: 0.5em;
-    background: #eee;
-    cursor: pointer;
-    border: 1px solid #eee;
-    transition: all 0.5s ease;
-    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
 
 .information_section__photos {

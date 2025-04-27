@@ -9,7 +9,11 @@ CREATE TABLE Users(
     Password VARCHAR(255) NOT NULL,
     FullName VARCHAR(255) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
-    Rol ENUM('administrador', 'usuario') DEFAULT 'usuario'
+    Rol ENUM('administrador', 'usuario') DEFAULT 'usuario',
+    Active TINYINT DEFAULT 0,
+    ActivationToken VARCHAR(255) DEFAULT NULL,
+    ResetToken VARCHAR(255) DEFAULT NULL,
+    ResetTokenExpiration DATETIME DEFAULT NULL
 );
 
 CREATE TABLE CategoriesDestinations(
@@ -81,6 +85,17 @@ CREATE TABLE Destination_Activities(
     ActivityID INT NOT NULL,
     FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID),
     Foreign Key (ActivityID) REFERENCES Activities(ActivityID)
+);
+
+CREATE TABLE Reviews(
+    ReviewID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    DestinationID INT NOT NULL,
+    Comment TEXT,
+    Rating INT CHECK (Rating >= 1 AND Rating <= 5),
+    ReviewDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID)
 );
 
 -- password: 1234

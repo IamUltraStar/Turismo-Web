@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins Regular', Arial;
+    font-family: "Poppins Regular", Arial;
     color: #fff;
 }
 
@@ -27,7 +27,7 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    background: linear-gradient(to bottom, #000a,#0003);
+    background: linear-gradient(to bottom, #000a, #0003);
     z-index: 1;
 }
 
@@ -82,6 +82,19 @@
 .login_input_box {
     position: relative;
     text-align: start;
+    display: flex;
+    flex-direction: column;
+}
+
+.login_input_box a {
+    text-decoration: none;
+    color: #ccc;
+    margin-top: 1rem;
+}
+
+.login_input_box a:hover {
+    color: #aaa;
+    text-decoration: underline;
 }
 
 .login_input_box p {
@@ -123,7 +136,8 @@
 }
 
 .login_input:focus + .login_input__label,
-.login_input:not(:placeholder-shown).login_input:not(:focus) + .login_input__label {
+.login_input:not(:placeholder-shown).login_input:not(:focus)
+    + .login_input__label {
     top: -18px;
     font-size: 0.8rem;
 }
@@ -143,72 +157,7 @@
     background-color: #bcbcbc;
 }
 
-dialog {
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    outline: none;
-    position: absolute;
-    z-index: 3;
-    top: 0;
-    left: 0;
-}
-
-.body-dialog {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(2px);
-}
-
-.container-dialog {
-    padding: 30px 40px;
-    border-radius: 8px;
-    max-width: 480px;
-    width: 100%;
-    text-align: start;
-    background-color: #fff;
-    box-shadow: 0 0 5px 1px #0004;
-}
-
-.container-dialog h1 {
-    color: #000;
-}
-
-.container-dialog p {
-    font-size: 0.9rem;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    color: #000;
-    word-wrap: break-word;
-}
-
-.container-dialog form {
-    display: flex;
-    justify-content: end;
-}
-
-.container-dialog button {
-    color: #fff;
-    font-weight: bold;
-    width: 30%;
-    cursor: pointer;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #000;
-    border: 0;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-.container-dialog button:hover {
-    background-color: #212121;
-}
-
-@media (width < 850px){
+@media (width < 850px) {
     .container_form {
         justify-content: center;
     }

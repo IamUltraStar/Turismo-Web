@@ -1,7 +1,8 @@
+let map, placeDetails;
+
 (async () => {
     const url = new URL(window.location);
     const destinationId = url.searchParams.get("dest");
-    let placeDetails;
 
     try {
         const response = await fetch(
@@ -51,22 +52,23 @@
         console.error("Error al cargar los destinos:", error);
     }
 
+    console.log("destinationName", `${nameDestination} ${locationDestination}`);
+
     try {
-        console.log("Buscando lugar en Google Maps...", nameDestination);
         let urlFetch =
             "https://google-map-places-new-v2.p.rapidapi.com/v1/places:searchText";
         let options = {
             method: "POST",
             headers: {
                 "x-rapidapi-key":
-                    // "18f3b2bba7mshb3be33d8dd8c4f9p19ac80jsnb82308d6e070",
-                    "7d20b2c277mshe7a2b80563ae31fp1a8ceejsnef969f499eca",
+                    "18f3b2bba7mshb3be33d8dd8c4f9p19ac80jsnb82308d6e070",
+                // "7d20b2c277mshe7a2b80563ae31fp1a8ceejsnef969f499eca",
                 "x-rapidapi-host": "google-map-places-new-v2.p.rapidapi.com",
                 "Content-Type": "application/json",
                 "X-Goog-FieldMask": "*",
             },
             body: JSON.stringify({
-                textQuery: nameDestination,
+                textQuery: `${nameDestination}`,
                 languageCode: "es",
                 regionCode: "PE",
                 rankPreference: 0,
@@ -80,20 +82,65 @@
 
         const response = await fetch(urlFetch, options);
         const result = await response.json();
-        console.log(result);
         placeDetails = result.places[0];
-        console.log(placeDetails);
 
         maptilersdk.config.apiKey = "ZISOEJg9RwzxrV6iqswp";
-        const map = new maptilersdk.Map({
+        map = new maptilersdk.Map({
             container: "map", // container's id or the HTML element to render the map
             center: [
                 placeDetails.location.longitude,
                 placeDetails.location.latitude,
             ],
-            zoom: 10,
+            zoom: 6,
             style: maptilersdk.MapStyle.HYBRID,
             cooperativeGestures: true,
+        });
+
+        const marker = new maptilersdk.Marker()
+            .setLngLat([
+                placeDetails.location.longitude,
+                placeDetails.location.latitude,
+            ])
+            .addTo(map);
+
+        const start = [-77.11705, -12.062286]; // [lng, lat]
+        const end = [
+            placeDetails.location.longitude,
+            placeDetails.location.latitude,
+        ];
+        const curvedCoords = generateCurve(start, end, 0.3);
+
+        var geojson = {
+            type: "FeatureCollection",
+            features: [
+                {
+                    type: "Feature",
+                    properties: {},
+                    geometry: {
+                        coordinates: curvedCoords,
+                        type: "LineString",
+                    },
+                },
+            ],
+        };
+
+        map.on("load", function () {
+            map.addSource("line", {
+                type: "geojson",
+                lineMetrics: true,
+                data: geojson,
+            });
+
+            map.addLayer({
+                id: "geojson-overlay-line",
+                type: "line",
+                source: "line",
+                layout: {},
+                paint: {
+                    "line-color": "#fff",
+                    "line-width": 3,
+                },
+            });
         });
 
         document.getElementById("linkGoogleMaps").href =
@@ -103,42 +150,27 @@
             "information_section__photos_container"
         );
 
-        urlFetch = `https://google-map-places-new-v2.p.rapidapi.com/v1/places/${
-            placeDetails.id
-        }/photos/${
-            placeDetails.photos[0].name.split("/")[3]
-        }/media?maxWidthPx=1920&maxHeightPx=1080&skipHttpRedirect=true`;
         options = {
             method: "GET",
             headers: {
                 "x-rapidapi-key":
-                    // "18f3b2bba7mshb3be33d8dd8c4f9p19ac80jsnb82308d6e070",
-                    "7d20b2c277mshe7a2b80563ae31fp1a8ceejsnef969f499eca",
+                    "18f3b2bba7mshb3be33d8dd8c4f9p19ac80jsnb82308d6e070",
+                // "7d20b2c277mshe7a2b80563ae31fp1a8ceejsnef969f499eca",
                 "x-rapidapi-host": "google-map-places-new-v2.p.rapidapi.com",
             },
         };
 
         const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+        const photos = placeDetails.photos.slice(0, 4);
+        // information_section__photos_container.innerHTML = "";
 
-        options = {
-            method: "GET",
-            headers: {
-                "x-rapidapi-key":
-                    // "18f3b2bba7mshb3be33d8dd8c4f9p19ac80jsnb82308d6e070",
-                    "7d20b2c277mshe7a2b80563ae31fp1a8ceejsnef969f499eca",
-                "x-rapidapi-host": "google-map-places-new-v2.p.rapidapi.com",
-            },
-        };
-
-        // placeDetails.photos.forEach(async (photo) => {
-        //     urlFetch = `https://google-map-places-new-v2.p.rapidapi.com/v1/places/${
-        //         placeDetails.id
-        //     }/photos/${
-        //         photo.name.split("/")[3]
-        //     }/media?maxWidthPx=1920&maxHeightPx=1080&skipHttpRedirect=true`;
+        // for (let i = 0; i < photos.length; i++) {
+        //     const photo = photos[i];
+        //     const photoName = photo.name.split("/")[3];
+        //     const url = `https://google-map-places-new-v2.p.rapidapi.com/v1/places/${placeDetails.id}/photos/${photoName}/media?maxWidthPx=1920&maxHeightPx=1080&skipHttpRedirect=true`;
 
         //     try {
-        //         const res = await fetch(urlFetch, options);
+        //         const res = await fetch(url, options);
         //         const data = await res.json();
 
         //         const viewPhoto = document.createElement("div");
@@ -146,38 +178,81 @@
 
         //         // HTML interno
         //         viewPhoto.innerHTML = `
-        //     <div class="view_photo__photo">
-        //         <img src="${data.photoUri}" alt="Foto del lugar" loading="lazy">
-        //     </div>
-        //     <div class="view_photo__data">
-        //         <div class="view_photo__author_photo">
-        //             <img
-        //                 src="${
-        //                     photo.authorAttributions?.[0]?.photoUri ||
-        //                     "../../assets/img/user_profile.png"
-        //                 }"
-        //                 alt="${
+        //             <div class="view_photo__photo">
+        //                 <img src="${
+        //                     data.photoUri
+        //                 }" alt="Foto del lugar" loading="lazy">
+        //             </div>
+        //             <div class="view_photo__data">
+        //                 <div class="view_photo__author_photo">
+        //                     <img
+        //                         src="${
+        //                             photo.authorAttributions?.[0]?.photoUri ||
+        //                             "../../assets/img/user_profile.png"
+        //                         }"
+        //                         alt="${
+        //                             photo.authorAttributions?.[0]
+        //                                 ?.displayName || "Anónimo"
+        //                         }"
+        //                         onerror="this.src='../../assets/img/user_profile.png'"
+        //                         loading="lazy"
+        //                     >
+        //                 </div>
+        //                 <p>${
         //                     photo.authorAttributions?.[0]?.displayName ||
         //                     "Anónimo"
-        //                 }"
-        //                 onerror="this.src='../../assets/img/user_profile.png'"
-        //                 loading="lazy"
-        //             >
-        //         </div>
-        //         <p>${
-        //             photo.authorAttributions?.[0]?.displayName || "Anónimo"
-        //         }</p>
-        //     </div>
-        // `;
+        //                 }</p>
+        //             </div>
+        //         `;
 
         //         information_section__photos_container.appendChild(viewPhoto);
-
-        //         await sleep(3000); // Espera 3000ms entre imágenes
+        //         await sleep(3000); // Espera 300ms entre imágenes
         //     } catch (err) {
         //         console.error("Error cargando la foto:", err);
         //     }
-        // });
+        // }
     } catch (error) {
         console.error(error);
     }
 })();
+
+const relocateDestination = () => {
+    map.setCenter([
+        placeDetails.location.longitude,
+        placeDetails.location.latitude,
+    ]);
+    // Reset bearing to north
+};
+
+const generateCurve = (start, end, curvature = 0.2, segments = 100) => {
+    const [x1, y1] = start;
+    const [x2, y2] = end;
+
+    // Calcular dirección perpendicular para la curva
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Punto medio entre inicio y fin
+    const mx = (x1 + x2) / 2;
+    const my = (y1 + y2) / 2;
+
+    // Vector perpendicular normalizado
+    const normalX = -dy / distance;
+    const normalY = dx / distance;
+
+    // Punto de control desplazado desde el punto medio
+    const cx = mx + normalX * distance * curvature;
+    const cy = my + normalY * distance * curvature;
+
+    // Generar la curva usando índices enteros para evitar errores de precisión
+    const curve = [];
+    for (let i = 0; i <= segments; i++) {
+        const t = i / segments;
+        const xt = (1 - t) ** 2 * x1 + 2 * (1 - t) * t * cx + t ** 2 * x2;
+        const yt = (1 - t) ** 2 * y1 + 2 * (1 - t) * t * cy + t ** 2 * y2;
+        curve.push([xt, yt]);
+    }
+
+    return curve;
+};

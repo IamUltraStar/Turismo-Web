@@ -21,8 +21,13 @@ class HomeController
     {
         if (isset($_SESSION['UserID'])) {
             $initials = '';
-
             $data = $this->userModel->getDataUserByID($_SESSION['UserID']);
+
+            if ($data === false) {
+                echo $initials;
+                exit();
+            }
+
             $datasplit = explode(" ", $data['FullName']);
 
             for ($i = 0; $i < 2; $i++) {

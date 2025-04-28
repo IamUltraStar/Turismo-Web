@@ -100,6 +100,8 @@ CREATE TABLE Reviews(
 
 -- password: 1234
 INSERT INTO Users (Username, Password, FullName, Email, Rol) VALUES ("admin_t", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Estrella", "jeanestrella558@gmail.com", "administrador");
+INSERT INTO Users (Username, Password, FullName, Email) VALUES ("jeanec", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Pierre Estrella", "jeanestrella578@gmail.com");
+INSERT INTO Users (Username, Password, FullName, Email) VALUES ("jhordan1", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jhordan Kevin Jacome", "jkjacomem@unac.edu.pe");
 
 INSERT INTO CategoriesDestinations (Name, Description) VALUES 
 ('Cultural', 'Destinos enfocados en la cultura e historia de Perú, incluyendo sitios arqueológicos y tradiciones.'),
@@ -177,7 +179,37 @@ Para llegar a Gocta, los visitantes deben realizar una caminata que atraviesa pa
 Recorrer Chan Chan es como adentrarse en una ciudad fantasma que aún conserva su grandeza. Sus plazas ceremoniales, depósitos y templos ofrecen una visión única de la vida en esta antigua metrópoli. El contraste entre el desierto costero y las imponentes estructuras de barro hace de este lugar una experiencia inolvidable.', 'La Libertad', 140.00, '../../assets/img/destination_chan_chan.webp', 7),
 ('Huacachina', 'Huacachina, un oasis en medio del desierto de Ica, es uno de los paisajes más singulares del Perú. Rodeado de dunas doradas y palmeras, este pequeño pueblo es un destino perfecto para los amantes de la aventura. Aquí, los visitantes pueden practicar sandboarding, deslizarse por las dunas en tablas, o recorrer el desierto en buggies, disfrutando de atardeceres espectaculares.
 
-Además de las actividades de aventura, Huacachina ofrece un ambiente relajado para quienes buscan descansar y disfrutar del paisaje. Su laguna central, envuelta en leyendas locales, añade un toque místico a este lugar. La combinación de adrenalina, naturaleza y tranquilidad hace de Huacachina un destino único en el Perú.', 'Ica', 90.00, '../../assets/img/destination_huacachina.webp', 3);
+Además de las actividades de aventura, Huacachina ofrece un ambiente relajado para quienes buscan descansar y disfrutar del paisaje. Su laguna central, envuelta en leyendas locales, añade un toque místico a este lugar. La combinación de adrenalina, naturaleza y tranquilidad hace de Huacachina un destino único en el Perú.', 'Ica', 90.00, '../../assets/img/destination_huacachina.webp', 3),
+('Los Manglares de Tumbes', 'El Santuario Nacional Los Manglares de Tumbes es un tesoro ecológico donde el agua dulce se mezcla con el mar, creando un ecosistema único en el Perú. Sus laberintos acuáticos albergan una biodiversidad sorprendente: desde cocodrilos de Tumbes, especie en peligro de extinción, hasta aves migratorias como garzas y fragatas. Los visitantes pueden navegar en kayak por sus canales, observando las raíces aéreas de los mangles que sirven de refugio a cangrejos y moluscos. Además, este manglar es vital para las comunidades locales, que aprovechan sus recursos de manera sostenible.
+
+Este destino es ideal para el ecoturismo, con tours que incluyen avistamiento de fauna y educación ambiental. Al atardecer, el paisaje se tiñe de tonos dorados, ofreciendo un espectáculo natural inigualable. Los Manglares de Tumbes no solo son un paraíso para biólogos, sino también para viajeros que buscan conectar con la naturaleza en su estado más puro.', 'Tumbes', 110.00, '../../assets/img/destination_manglares_tumbes.webp', 4),
+('Cañón de los Perdidos', 'El Cañón de los Perdidos, ubicado en el corazón del desierto de Ica, es una maravilla geológica esculpida por milenios de erosión. Sus paredes rojizas y estratos multicolores crean un paisaje similar al Gran Cañón de Colorado, pero con una atmósfera de misterio y soledad. Ideal para aventureros, este destino ofrece trekking por senderos sinuosos, donde las formaciones rocosas adoptan formas caprichosas bajo la luz del atardecer.
+
+Explorar este cañón implica adentrarse en un mundo silencioso, lejos del turismo masivo. Las excursiones suelen incluir campamentos bajo un cielo estrellado, perfecto para la fotografía astronómica. Aunque el clima es árido, la presencia de fósiles marinos en las rocas recuerda que esta zona fue parte del océano hace millones de años, añadiendo un toque científico a la aventura.', 'Ica', 95.00, '../../assets/img/destination_canon_perdidos.webp', 2),
+('Sillustani', 'Sillustani, ubicado a orillas de la laguna Umayo, es un complejo arqueológico preincaico famoso por sus chullpas: imponentes torres funerarias cilíndricas construidas por la cultura Colla. Estas estructuras, algunas de hasta 12 metros de altura, servían como mausoleos para nobles y líderes, y están alineadas con precisión astronómica. El entorno natural, con la laguna reflejando el cielo andino, crea un ambiente místico.
+
+Los visitantes pueden recorrer el sitio mientras aprenden sobre los rituales mortuorios y la cosmovisión de las culturas antiguas. Al atardecer, el juego de luces sobre las chullpas y el sonido del viento en la planicie transportan a un tiempo donde la muerte y la espiritualidad se entrelazaban con la vida cotidiana.', 'Puno', 70.00, '../../assets/img/destination_sillustani.webp', 7),
+('Marcahuasi', 'Marcahuasi, una meseta a 4,000 msnm, es un enigma para arqueólogos y místicos. Sus formaciones rocosas, erosionadas durante siglos, parecen esculpidas para representar rostros humanos, animales y figuras abstractas. Algunos creen que este lugar fue un centro energético o un observatorio astronómico ancestral. Las noches despejadas ofrecen un cielo estrellado ideal para la meditación y la fotografía astral.
+
+Los visitantes pueden participar en ceremonias guiadas por chamanes locales, quienes realizan ofrendas a la Pachamama. Durante el solsticio, el sitio atrae a peregrinos que buscan recargar energía. Aunque el clima es frío, la combinación de paisaje surrealista y misticismo hace de Marcahuasi un destino único para quienes buscan respuestas más allá de lo tangible.', 'Lima', 85.00, '../../assets/img/destination_marcahuasi.webp', 6),
+('Bosque de Piedras de Huayllay', 'El Bosque de Piedras de Huayllay, en Pasco, parece un museo al aire libre donde la naturaleza esculpió gigantes de roca que asemejan animales, monstruos y figuras humanas. Formado hace 70 millones de años por actividad volcánica y erosión glacial, este lugar es un paraíso para geólogos y escaladores. Las rutas de trekking permiten descubrir formaciones como el "Alquimista" o la "Catedral Gótica", mientras que los escaladores desafían paredes verticales.
+
+Además de su valor geológico, el bosque alberga pinturas rupestres de cazadores nómadas que habitaron la zona hace 10,000 años. En invierno, la niebla envuelve las rocas, creando un ambiente misterioso. Este destino combina aventura, ciencia y un paisaje que desafía la imaginación.', 'Pasco', 65.00, '../../assets/img/destination_bosque_huayllay.webp', 10),
+('Caral', 'Caral, la ciudad sagrada de la civilización más antigua de América (3,000 a.C.), revela el ingenio de una cultura que floreció sin cerámica ni metales. Sus pirámides escalonadas, plazas circulares y anfiteatro demuestran un avanzado conocimiento arquitectónico y astronómico. Los arqueólogos creen que aquí se originaron conceptos como el quipu (sistema de contabilidad) y el culto al fuego.
+
+Recorrer Caral es viajar al origen de las civilizaciones andinas. El sitio incluye un museo con artefactos como flautas de hueso y tejidos, evidenciando una sociedad organizada y espiritual. El silencio del valle de Supe, rodeado de cerros áridos, invita a reflexionar sobre el legado de una cultura que sentó las bases del Perú antiguo.', 'Lima', 90.00, '../../assets/img/destination_caral.webp', 7),
+('Choquequirao', 'Choquequirao, la "hermana sagrada de Machu Picchu", es un complejo inca accesible solo tras una exigente caminata de 4 días. Sus terrazas agrícolas, templos y canales de agua se alzan sobre el cañón del Apurímac, rodeados de montañas cubiertas de vegetación. A diferencia de Machu Picchu, aquí el turismo es mínimo, permitiendo una conexión íntima con la historia.
+
+El sitio arqueológico, aún parcialmente cubierto por la selva, guarda misterios como el Usnu (plataforma ceremonial) y grabrados de llamas en piedra. Al amanecer, el vuelo de cóndores y el rugido del río Apurímac crean una atmósfera épica. Choquequirao no es solo un destino; es una prueba de resistencia y un premio para los amantes de la arqueología sin multitudes.', 'Cusco', 130.00, '../../assets/img/destination_choquequirao.webp', 7),
+('Cordillera Blanca', 'La Cordillera Blanca, con sus picos nevados como el Huascarán (6,768 msnm), es el sueño de todo montañista. Dentro del Parque Nacional Huascarán, declarado Patrimonio Natural, se encuentran lagunas turquesas como Llanganuco y Pastoruri, senderos como el famoso Santa Cruz, y biodiversidad única, incluyendo vizcachas y queñuales.
+
+Las expediciones varían desde trekking moderado hasta ascensos técnicos a nevados. En Querococha, los visitantes pueden aprender sobre glaciares y cambio climático. La cordillera también alberga pueblos como Chavín, donde la cultura andina se mantiene viva. Este destino combina adrenalina, paisajes alpinos y un llamado a preservar la frágil belleza de los Andes.', 'Áncash', 150.00, '../../assets/img/destination_cordillera_blanca.webp', 2),
+('Oxapampa', 'Oxapampa, fundada por colonos austro-alemanes en el siglo XIX, es un rincón de los Alpes en la selva central peruana. Sus casas de madera con techos a dos aguas, iglesia estilo bávaro y festivales como Selvámonos fusionan tradiciones europeas y amazónicas. Los alrededores ofrecen cascadas como El Tigre, cafetales orgánicos y el Parque Nacional Yanachaga-Chemillén, hogar de osos de anteojos.
+
+Los turistas pueden degustar platos como el kuchen (pastel alemán) y el jachapato (cerdo ahumado), o participar en la cosecha de café. De noche, las fogatas y el sonido de los grillos crean un ambiente rural mágico. Oxapampa es cultura, naturaleza y tranquilidad en un solo destino.', 'Pasco', 80.00, '../../assets/img/destination_oxapampa.webp', 8),
+('Máncora', 'Máncora, en la costa norte del Perú, es sinónimo de sol, surf y fiesta. Sus playas de arena blanca y aguas cálidas son ideales para surfistas de todos los niveles, mientras que los amantes del relax disfrutan de cabañas frente al mar y masajes al ritmo de las olas. La gastronomía local, con ceviches de conchas negras y tiraditos de mariscos, es un deleite.
+
+Por la noche, la avenida Piura se llena de vida con bares, restaurantes y música en vivo. Para quienes buscan tranquilidad, las playas vecinas como Vichayito ofrecen privacidad y puestas de sol espectaculares. Máncora es el equilibrio perfecto entre adrenalina, lujo rústico y vida bohemia.', 'Piura', 120.00, '../../assets/img/destination_mancora.webp', 3);
 
 INSERT INTO ProgrammedTrips (Name, Description, StartDate, EndDate, MaxCapacity, Price, DestinationID) VALUES 
 ('Tour Machu Picchu Básico', 'Incluye visita guiada y transporte en tren desde Cusco.', '2024-12-04', '2024-12-07', 30, 350.00, 1),
@@ -208,7 +240,22 @@ INSERT INTO Activities (Name, Description, Price) VALUES
 ('Observación de Aves en Pacaya Samiria', 'Avista especies únicas en la Reserva Nacional Pacaya Samiria, como el gallito de las rocas y guacamayos.', 50.00),
 ('Paseo en Caballo a Vinicunca', 'Disfruta de un recorrido a caballo hacia la Montaña de Siete Colores, ideal para los que buscan una alternativa a la caminata.', 60.00),
 ('Tour en Totora por el Lago Titicaca', 'Recorrido en bote tradicional de totora por el Lago Titicaca, explorando sus islas flotantes y aprendiendo sobre las costumbres locales.', 40.00),
-('Visita Guiada al Monasterio de Santa Catalina', 'Recorrido guiado por el Monasterio de Santa Catalina, un complejo histórico con hermosos claustros y arquitectura colonial, conociendo la historia religiosa de Arequipa.', 25.00);
+('Visita Guiada al Monasterio de Santa Catalina', 'Recorrido guiado por el Monasterio de Santa Catalina, un complejo histórico con hermosos claustros y arquitectura colonial, conociendo la historia religiosa de Arequipa.', 25.00),
+('Tour en kayak por los manglares', 'Exploración de los canales de manglar en kayak con guía local.', 45.00),
+('Avistamiento de cocodrilos', 'Recorrido nocturno para observar cocodrilos de Tumbes.', 35.00),
+('Trekking en el Cañón de los Perdidos', 'Caminata de 2 días por el cañón con campamento en zona desértica.', 80.00),
+('Fotografía astronómica en Marcahuasi', 'Taller para capturar las estrellas y formaciones rocosas.', 55.00),
+('Escalada en roca en Huayllay', 'Clase guiada para escalar formaciones pétreas.', 60.00),
+('Tour arqueológico en Caral', 'Visita guiada a las pirámides y centro ceremonial.', 30.00),
+('Caminata a Choquequirao', 'Expedición de 4 días desde Cusco hasta las ruinas incas.', 200.00),
+('Ascenso al Huascarán', 'Expedición guiada al pico más alto del Perú (6,768 msnm).', 500.00),
+('Tour de café en Oxapampa', 'Recorrido por fincas cafetaleras y proceso de producción.', 25.00),
+('Clases de surf en Máncora', 'Lecciones para principiantes e intermedios en olas del Pacífico.', 70.00),
+('Observación de aves en Tumbes', 'Identificación de especies endémicas en los manglares.', 40.00),
+('Visita a laguna Umayo', 'Paseo en bote junto a las chullpas de Sillustani.', 20.00),
+('Rituales místicos en Marcahuasi', 'Ceremonias ancestrales guiadas por chamanes locales.', 50.00),
+('Tour geológico en Huayllay', 'Explicación científica de las formaciones rocosas.', 25.00),
+('Noche cultural en Oxapampa', 'Cena típica y música tradicional en hostería alemana.', 45.00);
 
 INSERT INTO Destination_Activities (DestinationID, ActivityID) VALUES 
 (1, 1), -- Caminata en Machu Picchu
@@ -227,4 +274,56 @@ INSERT INTO Destination_Activities (DestinationID, ActivityID) VALUES
 (13, 12),
 (14, 13),
 (15, 9),
-(15, 10);
+(15, 10),
+(16, 18),  -- Manglares de Tumbes: Tour en kayak
+(16, 19),  -- Manglares de Tumbes: Avistamiento de cocodrilos
+(17, 20),  -- Cañón de los Perdidos: Trekking
+(17, 27),  -- Cañón de los Perdidos: Fotografía astronómica (actividad compartida)
+(18, 28),  -- Sillustani: Visita a laguna Umayo
+(18, 5),   -- Sillustani: Exploración arqueológica (existente)
+(19, 21),  -- Marcahuasi: Fotografía astronómica
+(19, 29),  -- Marcahuasi: Rituales místicos
+(20, 22),  -- Bosque de Huayllay: Escalada en roca
+(20, 30),  -- Bosque de Huayllay: Tour geológico
+(21, 23),  -- Caral: Tour arqueológico
+(21, 5),   -- Caral: Exploración arqueológica (existente)
+(22, 24),  -- Choquequirao: Caminata
+(22, 1),   -- Choquequirao: Caminata al amanecer (existente)
+(23, 25),  -- Cordillera Blanca: Ascenso al Huascarán
+(23, 4),   -- Cordillera Blanca: Observación de cóndores (existente)
+(24, 26),  -- Oxapampa: Tour de café
+(24, 31),  -- Oxapampa: Noche cultural
+(25, 32),  -- Máncora: Clases de surf
+(25, 2);   -- Máncora: Tour en bote (existente)
+
+INSERT INTO Reviews (UserID, DestinationID, Comment, Rating) VALUES 
+(2, 1, '¡Increíble! Machu Picchu superó todas mis expectativas. La energía del lugar es mágica.', 5),
+(3, 1, 'Buen tour, pero demasiada gente. Recomiendo llegar temprano.', 4),
+(2, 3, 'Las Islas Ballestas son un paraíso natural. Vimos pingüinos y lobos marinos.', 5),
+(3, 3, 'El guía fue muy informativo, pero el viaje en bote fue un poco agitado.', 4),
+(2, 5, 'El Cañón del Colca es impresionante. Ver cóndores de cerca fue inolvidable.', 5),
+(3, 5, 'El trekking fue exigente por la altura, pero valió la pena.', 4),
+(2, 7, 'El Monasterio de Santa Catalina es una joya escondida. Los colores son vibrantes.', 5),
+(3, 7, 'Interesante, pero algunas áreas estaban en restauración.', 4),
+(2, 10, 'Chavín de Huántar es fascinante. Los túneles subterráneos son únicos.', 5),
+(3, 10, 'La ubicación es remota, pero la historia lo compensa.', 4),
+(2, 13, 'Gocta es una maravilla. La caminata por la selva fue aventurera.', 5),
+(3, 13, 'Muy húmedo, lleven repelente. La cascada es espectacular.', 4),
+(2, 15, 'Huacachina es diversión pura. El sandboarding es adrenalínico.', 5),
+(3, 15, 'Las dunas son geniales, pero el calor puede ser intenso.', 4),
+(2, 16, 'Los manglares de Tumbes son un ecosistema único. El kayak fue relajante.', 5),
+(3, 16, 'Excelente para amantes de la naturaleza, pero cuidado con los mosquitos.', 4),
+(2, 17, 'El Cañón de los Perdidos es asombroso. Ideal para fotógrafos.', 5),
+(3, 17, 'El trekking es duro, lleven suficiente agua.', 4),
+(2, 22, 'Choquequirao es una experiencia auténtica. Menos turistas que Machu Picchu.', 5),
+(3, 22, 'La caminata es para expertos. Prepárense físicamente.', 4),
+(2, 23, 'La Cordillera Blanca es imponente. Ideal para montañistas.', 5),
+(3, 23, 'El mal de altura afectó un poco, pero las vistas son increíbles.', 4),
+(2, 25, 'Máncora tiene las mejores olas para surfear. Ambiente muy divertido.', 5),
+(3, 25, 'Playas bonitas, pero algo congestionadas en temporada alta.', 4),
+(2, 19, 'Marcahuasi es místico. Las formaciones rocosas son enigmáticas.', 5),
+(3, 19, 'Frío intenso de noche, pero las estrellas son impresionantes.', 4),
+(2, 20, 'El Bosque de Piedras de Huayllay es como otro planeta. Ideal para escalar.', 5),
+(3, 20, 'Algunas rutas están mal señalizadas. Contraten guía.', 4),
+(2, 24, 'Oxapampa es encantadora. La mezcla cultural es única.', 5),
+(3, 24, 'El tour de café fue educativo, pero esperaba más degustación.', 4);

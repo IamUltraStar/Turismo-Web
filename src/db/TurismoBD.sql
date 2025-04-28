@@ -278,13 +278,12 @@ INSERT INTO Destination_Activities (DestinationID, ActivityID) VALUES
 (16, 18),  -- Manglares de Tumbes: Tour en kayak
 (16, 19),  -- Manglares de Tumbes: Avistamiento de cocodrilos
 (17, 20),  -- Cañón de los Perdidos: Trekking
-(17, 27),  -- Cañón de los Perdidos: Fotografía astronómica (actividad compartida)
-(18, 28),  -- Sillustani: Visita a laguna Umayo
+(18, 29),  -- Sillustani: Visita a laguna Umayo
 (18, 5),   -- Sillustani: Exploración arqueológica (existente)
 (19, 21),  -- Marcahuasi: Fotografía astronómica
-(19, 29),  -- Marcahuasi: Rituales místicos
+(19, 30),  -- Marcahuasi: Rituales místicos
 (20, 22),  -- Bosque de Huayllay: Escalada en roca
-(20, 30),  -- Bosque de Huayllay: Tour geológico
+(20, 31),  -- Bosque de Huayllay: Tour geológico
 (21, 23),  -- Caral: Tour arqueológico
 (21, 5),   -- Caral: Exploración arqueológica (existente)
 (22, 24),  -- Choquequirao: Caminata
@@ -292,8 +291,8 @@ INSERT INTO Destination_Activities (DestinationID, ActivityID) VALUES
 (23, 25),  -- Cordillera Blanca: Ascenso al Huascarán
 (23, 4),   -- Cordillera Blanca: Observación de cóndores (existente)
 (24, 26),  -- Oxapampa: Tour de café
-(24, 31),  -- Oxapampa: Noche cultural
-(25, 32),  -- Máncora: Clases de surf
+(24, 32),  -- Oxapampa: Noche cultural
+(25, 27),  -- Máncora: Clases de surf
 (25, 2);   -- Máncora: Tour en bote (existente)
 
 INSERT INTO Reviews (UserID, DestinationID, Comment, Rating) VALUES 

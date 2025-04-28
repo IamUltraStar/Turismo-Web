@@ -99,9 +99,9 @@ CREATE TABLE Reviews(
 );
 
 -- password: 1234
-INSERT INTO Users (Username, Password, FullName, Email, Rol) VALUES ("admin_t", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Estrella", "jeanestrella558@gmail.com", "administrador");
-INSERT INTO Users (Username, Password, FullName, Email) VALUES ("jeanec", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Pierre Estrella", "jeanestrella578@gmail.com");
-INSERT INTO Users (Username, Password, FullName, Email) VALUES ("jhordan1", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jhordan Kevin Jacome", "jkjacomem@unac.edu.pe");
+INSERT INTO Users (Username, Password, FullName, Email, Rol, Active) VALUES ("admin_t", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Estrella", "jeanestrella558@gmail.com", "administrador", 1);
+INSERT INTO Users (Username, Password, FullName, Email, Active) VALUES ("jeanec", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jean Pierre Estrella", "jeanestrella578@gmail.com", 1);
+INSERT INTO Users (Username, Password, FullName, Email, Active) VALUES ("jhordan1", "$2y$10$XrQAd0LdwSGwMiIlN2nbbOQHM312GByluBcYGiAo36Ealak64GM4C", "Jhordan Kevin Jacome", "jhordan.jkjm@gmail.com", 1);
 
 INSERT INTO CategoriesDestinations (Name, Description) VALUES 
 ('Cultural', 'Destinos enfocados en la cultura e historia de Perú, incluyendo sitios arqueológicos y tradiciones.'),

@@ -853,7 +853,7 @@ class PHPMailer
         $this->Host = 'smtp.gmail.com';                             //Set the SMTP server to send through
         $this->SMTPAuth = true;                                   //Enable SMTP authentication
         $this->Username = 'jhordan.jkjm@gmail.com';                     //SMTP username
-        $this->Password = 'schl vtxm vykc hdkz';                                       //SMTP password
+        $this->Password = '';                                       //SMTP password
         $this->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $this->Port = 465;
     }
